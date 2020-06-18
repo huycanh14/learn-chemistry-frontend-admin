@@ -5,19 +5,21 @@ const signIn = ({username, password}) => {
         username: username,
         password: password
     };
-    axios.post(`${process.env.URL_API}${process.env.API}${process.env.ACCOUNT}${process.env.LOGOPT_ENDPOINT}`, data)
+    return axios.post(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_ACCOUNT}${process.env.VUE_APP_LOGOPT_ENDPOINT}`, data, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+    })
       .then((response) => {
           return response;
       })
       .catch((error) => {
-          return error;
+          return error.response;
       });
 };
 
 const createToken = () => {
-    axios.post('/user', {}, {
+    return axios.post('/user', {}, {
         headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
+            'Content-Type': 'application/x-www-form-urlencoded',
             'refresh_token': window.localStorage.getItem("refresh_token")
         }
     }).then((response) => {

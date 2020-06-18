@@ -48,9 +48,11 @@ const mutations = {
 }
 
 const actions = {
-    signIn({commit}, payload) {
+    signIn({commit}) {
+        commit('signIn');
+    },
+    saveInformationLogin({commit}, payload){
         commit('saveInformationLogin', payload);
-        console.log(payload);
     }
 
 }

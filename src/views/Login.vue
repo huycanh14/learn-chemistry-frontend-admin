@@ -2,16 +2,16 @@
     <div id="login">
         <div id="description">
             <h1>Login</h1>
-            <p>By logging in you agree to the ridiculously long terms that you didn't bother to read.</p>
+            <p> {{ $t('form_login.title') }} </p>
         </div>
         <div id="form">
             <form @submit.prevent="doLogin">
-                <label for="email">Email</label>
-                <input type="text" id="email" v-model="email" placeholder="me@example.com" autocomplete="off" >
+                <label for="username">{{ $t('form_login.username') }}</label>
+                <input type="text" v-model="username" placeholder="me@example.com" autocomplete="off" required>
 
-                <label for="password">Password</label>&nbsp;
+                <label for="password">{{ $t('form_login.password') }}</label>&nbsp;
                 <font-awesome-icon :icon="['fas', passwordIcon]" @click="hidePassword = !hidePassword"></font-awesome-icon>
-                <input :type="passwordType" id="password" v-model="password" placeholder="**********" required>
+                <input :type="passwordType" v-model="password" placeholder="**********" required>
 
                 <button type="submit">Log in</button>
             </form>
@@ -24,7 +24,7 @@
 export default {
     data() {
         return {
-            email: '',
+            username: '',
             password: '',
             hidePassword: true
         }
@@ -39,10 +39,17 @@ export default {
     },
     methods: {
       doLogin() {
-        this.$store.dispatch('accounts/signIn', {email: this.email, password: this.password});
-      }
+        this.$store.dispatch('accounts/signIn');
+      },
     },
-    
+    watch: {
+      username(value) {
+        this.$store.dispatch('accounts/saveInformationLogin', {username: value, password: this.password});
+      },
+      password(value) {
+        this.$store.dispatch('accounts/saveInformationLogin', {username: this.username, password: value});
+      }
+    }
     
     
 }

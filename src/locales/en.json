@@ -1,3 +1,8 @@
 {
-  "message": "hello i18n !!"
+  "message": "hello i18n !!",
+  "form_login": {
+    "title": "To log in, you need all the necessary information !!!",
+    "username": "Email / Username",
+    "password": "Password"
+  }
 }
