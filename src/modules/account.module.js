@@ -36,20 +36,20 @@ const mutations = {
         }
     },
 
-    signIn(state){
-        AccountService.signIn(state.information_login)
-        .then((response) => {
-            console.log(response);
-        }).catch((error)=>{
-            console.log(error);
-        });
-        
+    saveInfoAccount(state){
+        state
     }
 }
 
 const actions = {
     signIn({commit}) {
-        commit('signIn');
+        return AccountService.signIn(state.information_login)
+        .then((response) => {
+            commit('saveInfoAccount', response);
+            return response;
+        }).catch((error)=>{
+            return error;
+        });
     },
     saveInformationLogin({commit}, payload){
         commit('saveInformationLogin', payload);

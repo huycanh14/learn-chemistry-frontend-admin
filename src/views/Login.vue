@@ -39,7 +39,8 @@ export default {
     },
     methods: {
       doLogin() {
-        this.$store.dispatch('accounts/signIn');
+        this.$swal('Hello Vue world!!!');
+        this.$store.dispatch('accounts/signIn').then(response => console.log(response));
       },
     },
     watch: {
