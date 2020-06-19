@@ -3,6 +3,7 @@
   "form_login": {
     "title": "Để đăng nhập bạn cần đầy đủ các thông tin cần thiết !!!",
     "username": "Email / Tên đăng nhập",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "error": "Thông tin đăng nhập không đúng"
   }
 }

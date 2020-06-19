@@ -26,9 +26,6 @@ const getters = {
 };
 
 const mutations = {
-    // updateValue(state, payload) {
-    //     state.value = payload;
-    // }
     saveInformationLogin(state, data){
         state.information_login = {
             username: data.username,
@@ -42,15 +39,30 @@ const mutations = {
 }
 
 const actions = {
-    signIn({commit}) {
-        return AccountService.signIn(state.information_login)
+    async signIn({commit, dispatch}) {
+        return await AccountService.signIn(state.information_login)
         .then((response) => {
-            commit('saveInfoAccount', response);
-            return response;
+            window.localStorage.setItem("refresh_token",response.data.refresh_token);
+            commit('saveInfoAccount', response.data);
+            if(response.status == 200){
+                return dispatch('createToken');
+            }
+            return   response;
         }).catch((error)=>{
             return error;
         });
     },
+
+    createToken() {
+        return AccountService.createToken()
+        .then(response => {
+            window.localStorage.setItem("access_token",response.data.access_token);
+            return response;
+        }).catch(error => {
+            return error
+        });
+    },
+
     saveInformationLogin({commit}, payload){
         commit('saveInformationLogin', payload);
     }

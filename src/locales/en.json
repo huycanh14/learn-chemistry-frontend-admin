@@ -3,6 +3,7 @@
   "form_login": {
     "title": "To log in, you need all the necessary information !!!",
     "username": "Email / Username",
-    "password": "Password"
+    "password": "Password",
+    "error": "Login information is incorrect"
   }
 }

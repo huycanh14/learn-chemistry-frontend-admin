@@ -39,8 +39,13 @@ export default {
     },
     methods: {
       doLogin() {
-        this.$swal('Hello Vue world!!!');
-        this.$store.dispatch('accounts/signIn').then(response => console.log(response));
+        this.$store.dispatch('accounts/signIn').then(response => {
+          if(response.status != 200) {
+            this.$swal(this.$t('form_login.error'), '', 'warning');
+          } else {
+            this.$router.push({name: "Home"});
+          }
+        });
       },
     },
     watch: {
