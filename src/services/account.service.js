@@ -7,18 +7,11 @@ const signIn = ({username, password}) => {
         email: username,
         password: password
     };  
-    return axios.post(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_ACCOUNT}${process.env.VUE_APP_LOGOPT_ENDPOINT}`, qs.stringify(data), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-    }).then((response) => response).catch((error) => error.response);
+    return axios.post(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_ACCOUNT}${process.env.VUE_APP_LOGOPT_ENDPOINT}`, qs.stringify(data)).then((response) => response).catch((error) => error.response);
 };
 
 const createToken = () => {
-    return axios.post(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_ACCOUNT}${process.env.VUE_APP_TOKEN_ENDPOINT}`,{}, {
-        headers: { 
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'refresh_token': window.localStorage.getItem("refresh_token")
-        }
-    }).then((response) => response).catch((error) => error.response);
+    return axios.post(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_ACCOUNT}${process.env.VUE_APP_TOKEN_ENDPOINT}`).then((response) => response).catch((error) => error.response);
 }
 
 const getListAccounts = (page=1) => {
@@ -27,10 +20,6 @@ const getListAccounts = (page=1) => {
         params: {
             page: page,
         },
-        headers: { 
-            'access_token': window.localStorage.getItem("access_token"),
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }
     }).then((response) => response).catch((error) => error.response);
 }
 

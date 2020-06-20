@@ -1,5 +1,5 @@
 const axios = require('axios');
-import store from '../store'
+import store from '../store';
 
 export const CHECK_TOKEN = async() => {
     axios.interceptors.response.use(response => response
