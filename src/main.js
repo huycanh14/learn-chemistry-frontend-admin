@@ -9,9 +9,11 @@ import store from './store'
 import i18n from './helpers/i18n'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { CHECK_TOKEN } from "./helpers/axios-config";
 
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2);
+Vue.use(CHECK_TOKEN())
 
 new Vue({
   router,

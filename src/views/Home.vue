@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <input type="button" @click="getListAccounts" value="get accounts">
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+  },
+  methods: {
+    getListAccounts(){
+      this.$store.dispatch('accounts/getListAccounts', {page: 1})
+    }
+  },
+  computed: {
   }
 }
 </script>

@@ -1,6 +1,7 @@
 import { AccountService } from '../services/account.service';
+import router from '../router'
 
-const state = {
+var state = {
     information_login: {
         username: '',
         password: ''
@@ -15,8 +16,8 @@ const state = {
         password: '',
         role_id: '',
         activated: '',
-    }
-
+    },
+    accounts: [],
 };
 
 const getters = {
@@ -33,8 +34,27 @@ const mutations = {
         }
     },
 
-    saveInfoAccount(state){
-        state
+    saveInfoAccount(state, data){
+        state.account = data;
+    },
+
+    getListAccounts(state, data){
+        state.accounts = data;
+        console.log(state.accounts)
+    },
+
+    signOut(state) {
+        state.account = {
+            first_name: '',
+            last_name: '',
+            username: '',
+            email: '',
+            date_of_birth: '',
+            gender: '',
+            password: '',
+            role_id: '',
+            activated: '',
+        };
     }
 }
 
@@ -47,7 +67,7 @@ const actions = {
             if(response.status == 200){
                 return dispatch('createToken');
             }
-            return   response;
+            return response;
         }).catch((error)=>{
             return error;
         });
@@ -65,8 +85,28 @@ const actions = {
 
     saveInformationLogin({commit}, payload){
         commit('saveInformationLogin', payload);
-    }
+    },
 
+    getListAccounts({commit}, payload){
+        return AccountService.getListAccounts(payload.page)
+        .then(response => {
+            commit('getListAccounts', response.data);
+            return response;
+        }).catch(error => {
+            return error;
+        })
+    },
+
+    test(){
+        console.log('test demo');
+    },
+
+    signOut({commit}){
+        window.localStorage.removeItem('access_token');
+        window.localStorage.removeItem('refresh_token');
+        commit('signOut');
+        router.go({name: "Login"});
+    }
 }
 
 export default {

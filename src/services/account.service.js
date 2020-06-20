@@ -1,5 +1,5 @@
 const axios = require('axios');
-const qs = require('querystring')
+const qs = require('querystring');
 
 const signIn = ({username, password}) => {
     let data = {
@@ -21,6 +21,19 @@ const createToken = () => {
     }).then((response) => response).catch((error) => error.response);
 }
 
+const getListAccounts = (page=1) => {
+    return axios.get(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_ACCOUNT}`,
+    {
+        params: {
+            page: page,
+        },
+        headers: { 
+            'access_token': window.localStorage.getItem("access_token"),
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+    }).then((response) => response).catch((error) => error.response);
+}
+
 export const AccountService = {
-    signIn, createToken
+    signIn, createToken, getListAccounts
 };
