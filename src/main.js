@@ -13,6 +13,9 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import { AUTH_HEADER } from "./helpers/auth-header";
 import { CHECK_TOKEN } from "./helpers/axios-config";
 
+const $ = require('jquery');
+window.$ = $;
+
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2);
 Vue.use(AUTH_HEADER())

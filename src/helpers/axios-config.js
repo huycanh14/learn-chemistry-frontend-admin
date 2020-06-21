@@ -14,7 +14,7 @@ export const CHECK_TOKEN = async() => {
             let store_refresh_token = store.state['accounts']["account"].refresh_token;
             let window_refresh_token = window.localStorage.getItem("refresh_token");
             if(store_refresh_token === window_refresh_token && store_refresh_token && window_refresh_token){
-                store.dispatch('accounts/createToken');
+                store.dispatch('accounts/signIn');
                 return axios.request(error.config);
             } else {
                 return store.dispatch('accounts/signOut');

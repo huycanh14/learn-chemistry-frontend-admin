@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import DashboardLayout from '../layouts/DashboardLayout.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -8,8 +8,15 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'DashboardLayout',
+    component: DashboardLayout,
+    children: [
+      {
+        path: "",
+        name: "Home",
+        component: () => import('../views/Home.vue')
+      }
+    ]
   },
   {
     path: '/about',
