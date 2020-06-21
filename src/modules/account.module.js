@@ -20,13 +20,13 @@ var state = {
     accounts: [],
 };
 
-const getters = {
+var getters = {
     value: state => {
         return state.value;
     }
 };
 
-const mutations = {
+var mutations = {
     saveInformationLogin(state, data){
         state.information_login = {
             username: data.username,
@@ -40,7 +40,6 @@ const mutations = {
 
     getListAccounts(state, data){
         state.accounts = data;
-        console.log(state.accounts)
     },
 
     signOut(state) {
@@ -58,9 +57,9 @@ const mutations = {
     }
 }
 
-const actions = {
+var actions = {
     async signIn({commit, dispatch}) {
-        return await AccountService.signIn(state.information_login)
+        return await AccountService.signIn({username: state.information_login.username, password: state.information_login.password })
         .then((response) => {
             window.localStorage.setItem("refresh_token",response.data.refresh_token);
             commit('saveInfoAccount', response.data);
@@ -76,7 +75,8 @@ const actions = {
     createToken() {
         return AccountService.createToken()
         .then(response => {
-            window.localStorage.setItem("access_token",response.data.access_token);
+            if(response.status == 200)
+                window.localStorage.setItem("access_token",response.data.access_token);
             return response;
         }).catch(error => {
             return error
@@ -90,17 +90,14 @@ const actions = {
     getListAccounts({commit}, payload){
         return AccountService.getListAccounts(payload.page)
         .then(response => {
-            commit('getListAccounts', response.data);
+            if(response.status == 200)
+                commit('getListAccounts', response.data);
             return response;
         }).catch(error => {
             return error;
         })
     },
-
-    test(){
-        console.log('test demo');
-    },
-
+    
     signOut({commit}){
         window.localStorage.removeItem('access_token');
         window.localStorage.removeItem('refresh_token');
