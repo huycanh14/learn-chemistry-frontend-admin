@@ -3,8 +3,8 @@ import router from '../router'
 
 var state = {
     information_login: {
-        username: '',
-        password: ''
+        username: window.localStorage.getItem("username") ? window.localStorage.getItem("username") :'',
+        password: window.localStorage.getItem("password") ? window.localStorage.getItem("password") :''
     },
     account: {
         first_name: '',
@@ -31,7 +31,9 @@ var mutations = {
         state.information_login = {
             username: data.username,
             password: data.password
-        }
+        };
+        window.localStorage.setItem('username',data.username);
+        window.localStorage.setItem('password',data.password);
     },
 
     saveInfoAccount(state, data){
