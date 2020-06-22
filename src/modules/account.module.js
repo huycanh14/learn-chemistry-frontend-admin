@@ -101,8 +101,7 @@ var actions = {
     },
     
     signOut({commit}){
-        window.localStorage.removeItem('access_token');
-        window.localStorage.removeItem('refresh_token');
+        window.localStorage.clear();
         commit('signOut');
         router.go({name: "Login"});
     }
