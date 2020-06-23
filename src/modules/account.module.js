@@ -2,6 +2,7 @@ import { AccountService } from '../services/account.service';
 import router from '../router'
 
 var state = {
+    count: 0,
     information_login: {
         username: window.localStorage.getItem("username") ? window.localStorage.getItem("username") :'',
         password: window.localStorage.getItem("password") ? window.localStorage.getItem("password") :''
@@ -56,6 +57,10 @@ var mutations = {
             role_id: '',
             activated: '',
         };
+    },
+
+    getTotalAccounts(state, data){
+        state.count = data.count;
     }
 }
 
@@ -104,6 +109,14 @@ var actions = {
         window.localStorage.clear();
         commit('signOut');
         router.go({name: "Login"});
+    },
+
+    getTotalAccounts({commit}){
+        return AccountService.getTotalAccounts().then(response => {
+            if(response.status === 200)
+                commit('getTotalAccounts', response.data);
+            return response;
+        }).catch(error => error.message);
     }
 }
 

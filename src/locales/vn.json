@@ -5,5 +5,18 @@
     "username": "Email / Tên đăng nhập",
     "password": "Mật khẩu",
     "error": "Thông tin đăng nhập không đúng"
+  },
+  "menu": {
+    "home": "Trang chủ",
+    "account": "Tài khoản",
+    "grade": "Khối học",
+    "chapter": "Chương học",
+    "lesson": "Bài học",
+    "theory": "Lý thuyết",
+    "type_of_lesson": "Dạng bài tập",
+    "question": "Câu hỏi",
+    "answer": "Đáp án",
+    "explain": "Câu trả lời",
+    "document": "Tài liệu"
   }
 }

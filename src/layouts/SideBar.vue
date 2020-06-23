@@ -16,22 +16,41 @@
       </div>
       <div class="sidebar-wrapper" >
         <ul class="nav slidebar">
+
           <li class="active ">
             <a href="javascript:;">
               <i class="nc-icon nc-bank"></i>
-              <p>First Item</p>
+              <p>{{$t('menu.home')}} </p>
             </a>
           </li>
           <li>
             <a href="javascript:;">
-              <i class="nc-icon nc-diamond"></i>
-              <p>Second Item</p>
+              <i class="nc-icon nc-align-left-2"></i>
+              <p>{{$t('menu.grade')}}</p>
             </a>
           </li>
           <li>
             <a href="javascript:;">
-              <i class="nc-icon nc-pin-3"></i>
-              <p>Third Item</p>
+              <i class="nc-icon nc-book-bookmark"></i>
+              <p>{{$t('menu.chapter')}}</p>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="nc-icon nc-bullet-list-67"></i>
+              <p>{{$t('menu.lesson')}}</p>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="nc-icon nc-paper"></i>
+              <p>{{$t('menu.document')}}</p>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="nc-icon nc-single-02"></i>
+              <p>{{$t('menu.account')}}</p>
             </a>
           </li>
         </ul>
@@ -41,14 +60,22 @@
 <script>
 import $ from "jquery";
 export default {
-    mounted() {
-        
-    },
+  data() {
+    return {
+    }
+  },
+  mounted() {
+    $(document).ready(function ($) {
+      $('ul.nav.slidebar li').click(function() { 
+          $(this).addClass('active').siblings().removeClass('active');
+      });
+    })
+  },
 }
-$(document).ready(function ($) {
-    $('ul.nav.slidebar li').click(function() { 
-        $(this).addClass('active').siblings().removeClass('active');
-    });
-})
-
+/* $(function() {
+  $( 'ul.nav li' ).on( 'click', function() {
+    $( this ).parent().find( 'li.active' ).removeClass( 'active' );
+      $( this ).addClass( 'active' );
+  });
+});*/
 </script>

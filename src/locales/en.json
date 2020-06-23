@@ -5,5 +5,18 @@
     "username": "Email / Username",
     "password": "Password",
     "error": "Login information is incorrect"
+  },
+  "menu": {
+    "home": "Home",
+    "account": "Accounts",
+    "grade": "Grades",
+    "chapter": "Chapters",
+    "lesson": "Lessons",
+    "theory": "Theories",
+    "type_of_lesson": "Type of lessons",
+    "question": "Questions",
+    "answer": "Answers",
+    "explain": "Explains",
+    "document": "Documents"
   }
 }
