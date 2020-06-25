@@ -45,7 +45,7 @@ var actions = {
     },
 
     createGrade({dispatch}, payload){
-        GradeService.createGrade({name: payload.name, status: payload.status}).then((response) => {
+        return GradeService.createGrade({name: payload.name, status: payload.status}).then((response) => {
             if(response.status === 200)
                 dispatch('getListGrades');
             return response;

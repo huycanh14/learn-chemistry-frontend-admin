@@ -36,5 +36,9 @@
     "active": "Kích hoạt",
     "inactive": "Vô hiệu hóa",
     "submit": "Tạo mới"
+  },
+  "messages": {
+    "success": "Tạo mới thành công",
+    "error": "Tạo mới thất bại"
   }
 }

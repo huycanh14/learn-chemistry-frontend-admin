@@ -23,12 +23,13 @@
         </div>
         <div class="row">
             <div class="update ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary btn-round" onclick="demo.showNotification('top','center')"> {{ $t('form_grade.submit')}}</button>
+                <button type="submit" class="btn btn-primary btn-round"> {{ $t('form_grade.submit')}}</button>
             </div>
         </div>
     </form>
 </template>
 <script>
+
 export default {
     data() {
         return {
@@ -40,7 +41,13 @@ export default {
     },
     methods: {
         doLogin() {
-            // demo.showNotification('top','center')
+            this.$store.dispatch('grades/createGrade', this.grade).then(response => {
+                if(response.status == 200) {
+                    this.$toast.success(this.$t('messages.success'))
+                } else {
+                    this.$toast.success(this.$t('messages.error'))
+                }
+            });
         }
     },
 }

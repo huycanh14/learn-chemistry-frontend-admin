@@ -36,5 +36,9 @@
     "active": "active",
     "inactive": "inactive",
     "submit": "Submit"
+  },
+  "messages": {
+    "success": "Create is success",
+    "error": "Create is failed"
   }
 }

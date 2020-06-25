@@ -29,106 +29,17 @@
                             {{$t('table_grade.action')}}
                         </th>
                     </thead>
-                    <!-- <tbody>
-                    <tr>
-                        <td>
-                        Dakota Rice
-                        </td>
-                        <td>
-                        Niger
-                        </td>
-                        <td>
-                        Oud-Turnhout
-                        </td>
-                        <td class="text-right">
-                        $36,738
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        Minerva Hooper
-                        </td>
-                        <td>
-                        Curaçao
-                        </td>
-                        <td>
-                        Sinaai-Waas
-                        </td>
-                        <td class="text-right">
-                        $23,789
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        Sage Rodriguez
-                        </td>
-                        <td>
-                        Netherlands
-                        </td>
-                        <td>
-                        Baileux
-                        </td>
-                        <td class="text-right">
-                        $56,142
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        Philip Chaney
-                        </td>
-                        <td>
-                        Korea, South
-                        </td>
-                        <td>
-                        Overland Park
-                        </td>
-                        <td class="text-right">
-                        $38,735
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        Doris Greene
-                        </td>
-                        <td>
-                        Malawi
-                        </td>
-                        <td>
-                        Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-right">
-                        $63,542
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        Mason Porter
-                        </td>
-                        <td>
-                        Chile
-                        </td>
-                        <td>
-                        Gloucester
-                        </td>
-                        <td class="text-right">
-                        $78,615
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        Jon Porter
-                        </td>
-                        <td>
-                        Portugal
-                        </td>
-                        <td>
-                        Gloucester
-                        </td>
-                        <td class="text-right">
-                        $98,615
-                        </td>
-                    </tr>
-                    </tbody> -->
+                    <tbody>
+                        <tr v-for="(grade, index) in grades" :key="grade._id">
+                            <td> {{index + 1}} </td>
+                            <td>{{grade.name}} </td>
+                            <td>{{grade.created_at | numberToDate}}</td>
+                            <td>{{grade.updated_at | numberToDate}}</td>
+                            <td v-if="grade.activated == true">{{$t('form_grade.active')}}</td>
+                            <td v-if="grade.activated == false">{{$t('form_grade.inactive')}}</td>
+                            <td class="text-right"> $36,738 </td>
+                        </tr>
+                    </tbody>
                 </table>
                 </div>
             </div>
@@ -144,6 +55,7 @@ import Vue from "vue";
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import i18n from '../../helpers/i18n'
+import store from '../../store'
 
 export default {
     components: {
@@ -161,7 +73,7 @@ export default {
                 { name: this.$t('table_grade.created_at') },
                 { name: this.$t('table_grade.updated_at') },
                 { name: this.$t('table_grade.actived') },
-            ]
+            ],
         }
     },
     methods: {
@@ -175,7 +87,8 @@ export default {
                     instance = new ComponentClass({
                         propsData: {
                         },
-                        i18n
+                        i18n,
+                        store
                     });
                     instance.$mount();
                     document.getElementById('CreateGrade').appendChild(instance.$el);
@@ -209,6 +122,14 @@ export default {
             })
         })
     },
+    filters: {
+        numberToDate: function(value) {
+            return `${new Date(value).toLocaleString().split(',')[1]} - ${new Date(value).toLocaleString().split(',')[0]}`;
+            // return new Date(value).toLocaleString().split(',')[1];
+            // return new Date(value).format('MMM D, YYYY');
+        },
+
+    }
 }
 </script>
 <style scoped>

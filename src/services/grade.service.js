@@ -20,8 +20,9 @@ const getListGrades = () => {
 const createGrade = ({name, status}) => {
     let data = {
         name: name,
-        actived: status
+        activated: status
     }; 
+    console.log(data)
     return axios.post(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_GRADE}`, 
         qs.stringify(data)
     ).then((response) => response).catch((error) => error.response);
