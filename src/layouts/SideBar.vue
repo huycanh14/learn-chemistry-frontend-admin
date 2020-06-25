@@ -17,24 +17,26 @@
       <div class="sidebar-wrapper" >
         <ul class="nav slidebar">
 
-          <li class="active ">
+          <router-link :to="{ name: 'home' }" tag="li" active-class="active" exact>
             <a href="javascript:;">
-              <i class="nc-icon nc-bank"></i>
-              <p>{{$t('menu.home')}} </p>
+            <i class="nc-icon nc-bank"></i>
+            <p>{{$t('menu.home')}} </p>
             </a>
-          </li>
-          <li>
+          </router-link>
+
+          <router-link :to="{ name: 'grade' }" tag="li" active-class="active">
             <a href="javascript:;">
               <i class="nc-icon nc-align-left-2"></i>
               <p>{{$t('menu.grade')}}</p>
             </a>
-          </li>
-          <li>
+          </router-link>
+            
+          <router-link :to="{ name: 'about' }" tag="li" active-class="active">
             <a href="javascript:;">
               <i class="nc-icon nc-book-bookmark"></i>
               <p>{{$t('menu.chapter')}}</p>
             </a>
-          </li>
+          </router-link>
           <li>
             <a href="javascript:;">
               <i class="nc-icon nc-bullet-list-67"></i>
@@ -67,9 +69,14 @@ export default {
   mounted() {
     $(document).ready(function ($) {
       $('ul.nav.slidebar li').click(function() { 
-          $(this).addClass('active').siblings().removeClass('active');
+          // $(this).addClass('active').siblings().removeClass('active');
       });
     })
+  },
+  computed: {
+    currentPage(){
+      return this.$route.path;
+    }
   },
 }
 /* $(function() {

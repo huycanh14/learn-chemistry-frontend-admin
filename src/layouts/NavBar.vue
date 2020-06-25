@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent fixed-top">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">

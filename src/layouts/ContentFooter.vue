@@ -1,4 +1,5 @@
 <template>
+    <!-- <footer class="footer footer-black  footer-white fixed-bottom"> -->
     <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">

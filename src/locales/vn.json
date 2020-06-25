@@ -18,5 +18,23 @@
     "answer": "Đáp án",
     "explain": "Câu trả lời",
     "document": "Tài liệu"
+  },
+  "table_grade": {
+    "name": "Tên",
+    "created_at": "Ngày tạo",
+    "updated_at": "Ngày sửa",
+    "actived": "Trạng thái",
+    "o_number": "Thứ tự",
+    "title": "Danh sách lớp",
+    "action": "Tác vụ",
+    "hover": "Thêm khối học"
+  },
+  "form_grade": {
+    "title": "Tạo khối học mới",
+    "name": "Tên khối học",
+    "status": "Trạng thái",
+    "active": "Kích hoạt",
+    "inactive": "Vô hiệu hóa",
+    "submit": "Tạo mới"
   }
 }

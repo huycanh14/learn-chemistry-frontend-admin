@@ -18,5 +18,23 @@
     "answer": "Answers",
     "explain": "Explains",
     "document": "Documents"
+  },
+  "table_grade": {
+    "name": "Name",
+    "created_at": "Created at",
+    "updated_at": "Updated at",
+    "actived": "Activated",
+    "o_number": "Ordinal numbers",
+    "title": "List of grade",
+    "action": "Actions",
+    "hover": "Click to add grade"
+  },
+  "form_grade": {
+    "title": "Create grade",
+    "name": "Name of grade",
+    "status": "Status",
+    "active": "active",
+    "inactive": "inactive",
+    "submit": "Submit"
   }
 }

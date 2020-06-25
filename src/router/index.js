@@ -1,38 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import DashboardLayout from '../layouts/DashboardLayout.vue'
+import routes from "./routes";
 import store from '../store'
 
 Vue.use(VueRouter)
 
-  const routes = [
-  {
-    path: '/',
-    name: 'DashboardLayout',
-    component: DashboardLayout,
-    redirect: "/",
-    children: [
-      {
-        path: "",
-        name: "Home",
-        component: () => import('../views/Home.vue')
-      },
-      {
-        path: 'about',
-        name: 'About',
-        component: () => import('../views/About.vue')
-      },
-    ]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login.vue')
-  },
-  { path: "*", redirect: "/" },
-]
 
 const router = new VueRouter({
+  linkExactActiveClass: "active",
+  linkActiveClass: "active",
   mode: 'history',
   base: process.env.BASE_URL,
   routes
