@@ -12,11 +12,11 @@
             <div class="form-group col-md-12 col-12 pr-1">
                 <label class="pr-4">{{ $t('form_grade.status') }}:</label> 
                 <div class="form-check form-check-inline pr-4">
-                    <input class="form-check-input" type="radio" name="status" v-model="grade.status" value="true">
+                    <input class="form-check-input" type="radio" name="activated" v-model="grade.activated" value="true">
                     <label class="form-check-label" for="inlineRadio1">{{ $t('form_grade.active') }}</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="status" v-model="grade.status" value="false">
+                    <input class="form-check-input" type="radio" name="activated" v-model="grade.activated" value="false">
                     <label class="form-check-label" for="inlineRadio2">{{ $t('form_grade.inactive') }}</label>
                 </div>
             </div>
@@ -35,7 +35,7 @@ export default {
         return {
             grade: {
                 name: '',
-                status: true
+                activated: true
             }
         }
     },
@@ -43,9 +43,9 @@ export default {
         doLogin() {
             this.$store.dispatch('grades/createGrade', this.grade).then(response => {
                 if(response.status == 200) {
-                    this.$toast.success(this.$t('messages.success'))
+                    this.$toast.success(this.$t('messages.create_success'))
                 } else {
-                    this.$toast.success(this.$t('messages.error'))
+                    this.$toast.error(this.$t('messages.create_error'))
                 }
             });
         }

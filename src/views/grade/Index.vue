@@ -25,20 +25,17 @@
                         <th v-for="(item, index) in title" :key="index">
                             {{ item.name }}
                         </th>
-                        <th class="text-right">
+                        <th class="text-right" colspan="2">
                             {{$t('table_grade.action')}}
                         </th>
                     </thead>
                     <tbody>
-                        <tr v-for="(grade, index) in grades" :key="grade._id">
-                            <td> {{index + 1}} </td>
-                            <td>{{grade.name}} </td>
-                            <td>{{grade.created_at | numberToDate}}</td>
-                            <td>{{grade.updated_at | numberToDate}}</td>
-                            <td v-if="grade.activated == true">{{$t('form_grade.active')}}</td>
-                            <td v-if="grade.activated == false">{{$t('form_grade.inactive')}}</td>
-                            <td class="text-right"> $36,738 </td>
-                        </tr>
+                        <grid-template 
+                            v-for="(grade, index) in grades" 
+                            :key="grade._id" 
+                            :payload="grade" 
+                            :index="index">
+                        </grid-template>
                     </tbody>
                 </table>
                 </div>
@@ -50,6 +47,7 @@
 <script>
 import { mapState } from 'vuex'
 import Create from "./Create.vue"
+import GridTemplate from "./GridTemplate.vue"
 import $ from "jquery";
 import Vue from "vue";
 import Loading from 'vue-loading-overlay';
@@ -59,7 +57,7 @@ import store from '../../store'
 
 export default {
     components: {
-        Loading
+        Loading, GridTemplate
     },
     data() {
         return {
@@ -94,7 +92,7 @@ export default {
                     document.getElementById('CreateGrade').appendChild(instance.$el);
                 }   
             })
-        }
+        },
     },
     computed: {
         ...mapState({
@@ -122,14 +120,6 @@ export default {
             })
         })
     },
-    filters: {
-        numberToDate: function(value) {
-            return `${new Date(value).toLocaleString().split(',')[1]} - ${new Date(value).toLocaleString().split(',')[0]}`;
-            // return new Date(value).toLocaleString().split(',')[1];
-            // return new Date(value).format('MMM D, YYYY');
-        },
-
-    }
 }
 </script>
 <style scoped>

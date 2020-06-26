@@ -20,8 +20,11 @@ var mutations = {
     },
 
     getListGrades(state, data){
-        console.log(data);
         state.grades = data.data;
+    },
+
+    updateValue(state, payload){
+        state.grade = payload.grade;
     }
 };
 
@@ -45,12 +48,30 @@ var actions = {
     },
 
     createGrade({dispatch}, payload){
-        return GradeService.createGrade({name: payload.name, status: payload.status}).then((response) => {
+        return GradeService.createGrade({name: payload.name, activated: payload.activated}).then((response) => {
             if(response.status === 200)
                 dispatch('getListGrades');
             return response;
         }).catch((error) => error.response);
-    }
+    },
+
+    updateGrade({dispatch}, payload){
+        console.log(payload);
+        return GradeService.updateGrade(payload).then((response) => {
+            if(response.status === 200)
+                dispatch('getListGrades');
+            return response;
+        }).catch((error) => error.response);
+    },
+
+    deleteGrade({dispatch}, _id){
+        return GradeService.deleteGrade(_id).then((response) => {
+            if(response.status === 200)
+                dispatch('getListGrades');
+            return response;
+        }).catch((error) => error.response);
+    },
+
 } 
 
 export default {

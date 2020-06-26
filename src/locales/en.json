@@ -38,7 +38,17 @@
     "submit": "Submit"
   },
   "messages": {
-    "success": "Create is success",
-    "error": "Create is failed"
+    "create_success": "Create is success",
+    "create_error": "Create is failed",
+    "update_success": "Update is success",
+    "update_error": "Update is failed",
+    "delete_success": "Delete is success",
+    "delete_error": "Delete is failed"
+  },
+  "clicks" :{
+    "update": "Click to update",
+    "remove": "Click to cancel update",
+    "delete": "Click to delete",
+    "dbclick": "Double click to edit"
   }
 }

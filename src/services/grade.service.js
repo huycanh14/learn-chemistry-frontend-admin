@@ -17,18 +17,35 @@ const getListGrades = () => {
     }).then((response) => response).catch((error) => error.response);
 };
 
-const createGrade = ({name, status}) => {
+const createGrade = ({name, activated}) => {
     let data = {
         name: name,
-        activated: status
+        activated: activated
     }; 
     console.log(data)
     return axios.post(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_GRADE}`, 
         qs.stringify(data)
     ).then((response) => response).catch((error) => error.response);
 
-}
+};
+
+const updateGrade = (payload) => {
+    let data = {
+        name: payload.name,
+        activated: payload.activated
+    };
+    return axios.put(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_GRADE}/${payload._id}`, 
+        qs.stringify(data)
+    ).then((response) => response).catch((error) => error.response);
+
+};
+
+const deleteGrade = (_id) => {
+    return axios.delete(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_GRADE}/${_id}`,
+    ).then((response) => response).catch((error) => error.response);
+
+};
 
 export const GradeService = {
-    getTotalGrades, getListGrades, createGrade
+    getTotalGrades, getListGrades, createGrade, updateGrade, deleteGrade
 };
