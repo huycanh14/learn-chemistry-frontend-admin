@@ -50,5 +50,11 @@
     "remove": "Click to cancel update",
     "delete": "Click to delete",
     "dbclick": "Double click to edit"
+  },
+  "title_delete": {
+    "title": "Are you sure delete",
+    "btn_conform": "Yes, I do",
+    "btn_cancel": "No, Keep it",
+    "title_relationship": "Being in binding relationship"
   }
 }

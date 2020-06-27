@@ -46,6 +46,15 @@ const deleteGrade = (_id) => {
 
 };
 
+const countInRelationships = (_id) => {
+    return axios.get(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_GRADE}`, {
+        params: {
+            relationships: 1,
+            grade_id: _id
+        }
+    }).then((response) => response).catch((error) => error.response);
+}
+
 export const GradeService = {
-    getTotalGrades, getListGrades, createGrade, updateGrade, deleteGrade
+    getTotalGrades, getListGrades, createGrade, updateGrade, deleteGrade, countInRelationships
 };

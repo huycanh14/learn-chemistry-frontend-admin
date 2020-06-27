@@ -50,5 +50,11 @@
     "cancel": "Click để hủy cập nhật",
     "delete": "Click để xóa",
     "dbclick": "Double click để sửa"
+  },
+  "title_delete": {
+    "title": "Bạn có chắc chắn xóa",
+    "btn_conform": "Chắc chắn",
+    "btn_cancel": "Hủy bỏ",
+    "title_relationship": "Đang có quan hệ ràng buộc"
   }
 }

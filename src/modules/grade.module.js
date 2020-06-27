@@ -1,4 +1,5 @@
 import { GradeService } from '../services/grade.service'
+import { TOTAL_IN_RELATIONSHIPS } from '../helpers/helper'
 
 var state = {
     count: 0,
@@ -71,6 +72,17 @@ var actions = {
             return response;
         }).catch((error) => error.response);
     },
+
+    countInRelationships({dispatch}, _id) {
+        return GradeService.countInRelationships(_id).then((response) => {
+            if(response.status === 200) {
+                let total = TOTAL_IN_RELATIONSHIPS(response.data.data);
+                return total;
+            }
+            dispatch('getListGrades');
+            return response;
+        }).catch((error) => error.response);
+    }
 
 } 
 

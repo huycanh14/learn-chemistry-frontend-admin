@@ -110,11 +110,38 @@ export default {
             
         },
         deleteItem(){
-            this.$store.dispatch('grades/deleteGrade', this.grade._id).then(response => {
-                if(response.status == 200) {
-                    this.$toast.success(this.$t('messages.delete_success'))
-                } else {
-                    this.$toast.error(this.$t('messages.delete_error'))
+            this.$swal({
+                title: `${this.$t('title_delete.title')}: ${this.payload.name}`,
+                icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'), cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
+            }).then((result) => {
+                if(result.value) {
+                    this.$store.dispatch('grades/countInRelationships', this.grade._id)
+                    .then(total => {
+                        if(total > 0) {
+                            this.$swal({
+                                title: `${this.payload.name}: ${this.$t('title_delete.title_relationship')} `, text: `Total: ${total}`, icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'),
+                                cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
+                            }).then((res) => {
+                                if(res.value) {
+                                    this.$store.dispatch('grades/deleteGrade', this.grade._id).then(response => {
+                                        if(response.status == 200) {
+                                            this.$toast.success(this.$t('messages.delete_success'))
+                                        } else {
+                                            this.$toast.error(this.$t('messages.delete_error'))
+                                        }
+                                    });
+                                }
+                            })
+                        } else {
+                            this.$store.dispatch('grades/deleteGrade', this.grade._id).then(response => {
+                                if(response.status == 200) {
+                                    this.$toast.success(this.$t('messages.delete_success'))
+                                } else {
+                                    this.$toast.error(this.$t('messages.delete_error'))
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }
