@@ -53,9 +53,6 @@ export default {
       count_account: state => state.accounts.count,
       count_chapter: state => state.chapters.count,
     }),
-    ...mapState({
-      // count_account: ['accounts', 'count'],
-    }),
     
   },
   beforeCreate(){

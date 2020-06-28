@@ -31,7 +31,7 @@
             </a>
           </router-link>
             
-          <router-link :to="{ name: 'about' }" tag="li" active-class="active">
+          <router-link :to="{ name: 'chapter', query: { page: 1} }" tag="li" active-class="active">
             <a href="javascript:;">
               <i class="nc-icon nc-book-bookmark"></i>
               <p>{{$t('menu.chapter')}}</p>

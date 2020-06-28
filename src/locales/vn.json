@@ -56,5 +56,26 @@
     "btn_conform": "Chắc chắn",
     "btn_cancel": "Hủy bỏ",
     "title_relationship": "Đang có quan hệ ràng buộc"
+  },
+  "table_chapter": {
+    "name": "Tên",
+    "created_at": "Ngày tạo",
+    "updated_at": "Ngày sửa",
+    "actived": "Trạng thái",
+    "o_number": "Thứ tự",
+    "title": "Danh sách chương học",
+    "action": "Tác vụ",
+    "hover": "Thêm chương học"
+  },
+  "form_chapter": {
+    "title": "Tạo chương học mới",
+    "name": "Tên chương học",
+    "status": "Trạng thái",
+    "active": "Kích hoạt",
+    "inactive": "Vô hiệu hóa",
+    "submit": "Tạo mới",
+    "chapter_number": "Chương số",
+    "description": "Miêu tả",
+    "grade": "Khối học"
   }
 }

@@ -57,7 +57,6 @@ var actions = {
     },
 
     updateGrade({dispatch}, payload){
-        console.log(payload);
         return GradeService.updateGrade(payload).then((response) => {
             if(response.status === 200)
                 dispatch('getListGrades');

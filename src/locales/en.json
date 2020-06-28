@@ -56,5 +56,26 @@
     "btn_conform": "Yes, I do",
     "btn_cancel": "No, Keep it",
     "title_relationship": "Being in binding relationship"
+  },
+  "table_gradechapter": {
+    "name": "Name",
+    "created_at": "Created at",
+    "updated_at": "Updated at",
+    "actived": "Activated",
+    "o_number": "Ordinal numbers",
+    "title": "List of chapter",
+    "action": "Actions",
+    "hover": "Click to add chapter"
+  },
+  "form_chapter": {
+    "title": "Create chapter",
+    "name": "Name of chapter",
+    "status": "Status",
+    "active": "active",
+    "inactive": "inactive",
+    "submit": "Submit",
+    "chapter_number": "Chapter number",
+    "description": "Description",
+    "grade": "Grade"
   }
 }
