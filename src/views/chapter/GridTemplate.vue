@@ -51,7 +51,9 @@ export default {
     },
     filters: {
         filterNameGrade: function(value, grades) {
-            return grades.filter(grade => grade._id === value)[0].name;
+            if(grades.length > 0)
+                return grades.filter(grade => grade._id === value)[0].name;
+            return value;
         },
         numberToDate: function(value) {
             return `${new Date(value).toLocaleString().split(',')[1]} - ${new Date(value).toLocaleString().split(',')[0]}`;

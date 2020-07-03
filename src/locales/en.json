@@ -80,6 +80,10 @@
     "submit": "Submit",
     "chapter_number": "Chapter number",
     "description": "Description",
-    "grade": "Grade"
+    "grade": "Grade",
+    "all": "All"
+  },
+  "btn": {
+    "search": "Search"
   }
 }

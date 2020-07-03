@@ -9,11 +9,9 @@ const getTotalChapters = () => {
     }).then((response) => response).catch((error) => error.response);
 }
 
-const getListChapters = () => {
+const getListChapters = (payload) => {
     return axios.get(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_CHAPTER}`,{
-        params: {
-            page: 1,
-        },
+        params: payload
     }).then((response) => response).catch((error) => error.response);
 };
 
@@ -55,7 +53,14 @@ const countInRelationships = (_id) => {
             chapter_id: _id
         }
     }).then((response) => response).catch((error) => error.response);
-}
+};
+
+const getTotalPages = (payload) => {
+    return axios.get(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_CHAPTER}`, {
+        params: payload
+    }).then((response) => response).catch((error) => error.response);
+};
+
 export const ChapterService = {
-    getTotalChapters, createChapter, updateChapter, deleteChapter, countInRelationships, getListChapters
+    getTotalChapters, createChapter, updateChapter, deleteChapter, countInRelationships, getListChapters, getTotalPages
 };

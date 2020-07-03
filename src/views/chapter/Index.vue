@@ -10,36 +10,38 @@
         </loading>
         <div class="col-md-12">
             <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">
-                    {{$t('table_chapter.title')}}
-                    <i class="nc-icon nc-simple-add float-right text-danger" data-toggle="tooltip" data-placement="left" 
-                        v-bind:title="$t('table_chapter.hover')" @click="createChapter">
-                    </i>
-                </h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
-                        <th v-for="(item, index) in title" :key="index">
-                            {{ item.name }}
-                        </th>
-                        <th class="text-center" colspan="2">
-                            {{$t('table_chapter.action')}}
-                        </th>
-                    </thead>
-                    <tbody>
-                        <grid-template 
-                            v-for="(chapter, index) in chapters" 
-                            :key="chapter._id" 
-                            :payload="chapter" 
-                            :index="index">
-                        </grid-template>
-                    </tbody>
-                </table>
+                <div class="card-header">
+                    <h4 class="card-title">
+                        {{$t('table_chapter.title')}}
+                        <i class="nc-icon nc-simple-add float-right text-danger" data-toggle="tooltip" data-placement="left" 
+                            v-bind:title="$t('table_chapter.hover')" @click="createChapter">
+                        </i>
+                    </h4>
+                    <Search></Search>
                 </div>
-            </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th v-for="(item, index) in title" :key="index">
+                                    {{ item.name }}
+                                </th>
+                                <th class="text-center" colspan="2">
+                                    {{$t('table_chapter.action')}}
+                                </th>
+                            </thead>
+                            <tbody>
+                                <grid-template 
+                                    v-for="(chapter, index) in chapters" 
+                                    :key="chapter._id" 
+                                    :payload="chapter" 
+                                    :index="index">
+                                </grid-template>
+                            </tbody>
+                        </table>
+                        <vue-paginate-al :totalPage="pages" @btnClick="newPage"></vue-paginate-al>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -48,6 +50,7 @@
 import { mapState } from 'vuex'
 import Create from "./Create.vue"
 import GridTemplate from "./GridTemplate.vue"
+import Search from "./Search.vue" 
 import $ from "jquery";
 import Vue from "vue";
 import Loading from 'vue-loading-overlay';
@@ -57,11 +60,11 @@ import store from '../../store'
 
 export default {
     components: {
-        Loading, GridTemplate
+        Loading, GridTemplate, Search
     },
     data() {
         return {
-            isLoading: true,
+            // isLoading: true,
             // isLoading: false,
             fullPage: false,
             background_color: "#4B4B4B",
@@ -76,9 +79,36 @@ export default {
             ],
         }
     },
+    computed: {
+        ...mapState({
+            chapters: state => state.chapters.chapters,
+            pages: state => state.chapters.pages,
+            isLoading: state => state.chapters.loading
+        }),
+    },
+    beforeCreate() {
+        let getTotals = [
+            this.$store.dispatch('grades/getListGrades'),
+            this.$store.dispatch('chapters/getListChapters'),
+            this.$store.dispatch('chapters/getTotalPages'),
+        ];
+        Promise.all(getTotals)
+        .then(() =>{
+        })
+        .catch(error => {
+            console.error(error, 'error');
+            this.isLoading = false;
+        });
+    },
+    mounted() {
+        $(document).ready(function ($) {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        })
+    },
     methods: {
         createChapter() {
-            console.log(this.chapters, 1)
             let instance = null;
             this.$swal({
                 title: this.$t('form_chapter.title'),
@@ -97,32 +127,13 @@ export default {
                 }   
             })
         },
+        newPage(page) {
+            this.$store.commit('chapters/updatePage', page);
+            this.$store.dispatch('chapters/getListChapters');
+        }
     },
-    computed: {
-        ...mapState({
-            chapters: state => state.chapters.chapters,
-        }),
-    },
-    beforeCreate() {
-        let getTotals = [
-            this.$store.dispatch('grades/getListGrades'),
-            this.$store.dispatch('chapters/getListChapters')
-        ];
-        Promise.all(getTotals)
-        .then(() =>{
-            this.isLoading = false;
-        })
-        .catch(error => {
-            console.error(error, 'error');
-            this.isLoading = false;
-        });
-    },
-    mounted() {
-        $(document).ready(function ($) {
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        })
+    watch: {
+        
     },
 }
 </script>

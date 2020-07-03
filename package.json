@@ -20,6 +20,7 @@
     "vue": "^2.6.11",
     "vue-i18n": "^8.17.3",
     "vue-loading-overlay": "^3.3.2",
+    "vue-paginate-al": "^1.1.6",
     "vue-router": "^3.2.0",
     "vue-sweetalert2": "^3.0.5",
     "vue-toast-notification": "^0.4.0",

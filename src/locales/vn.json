@@ -80,6 +80,10 @@
     "submit": "Tạo mới",
     "chapter_number": "Chương số",
     "description": "Miêu tả",
-    "grade": "Khối học"
+    "grade": "Khối học",
+    "all": "Tất cả"
+  },
+  "btn": {
+    "search": "Tìm kiếm"
   }
 }

@@ -5,11 +5,13 @@ var state = {
     count: 0,
     chapter: {
     },
-    total_page: 1,
+    pages: 1,
     chapters: [],
     keyword: '',
     page: 1,
-    grade_id: ""
+    grade_id: "",
+    activated: "",
+    loading: true
 };
 
 var getters = {
@@ -23,7 +25,30 @@ var mutations = {
 
     getListChapters(state, data){
         state.chapters = data.data;
+    },
+    
+    getTotalPages(state, data){
+        state.pages = Math.ceil(data.count/10);
+    },
+
+    updatePage(state, data){
+        state.page = data;
+    },
+
+    updateKeyword(state, data){
+        state.keyword = data;
+    },
+    
+    updateGradeId(state, data){
+        state.grade_id = data;
+    },
+    updateActivated(state, data){
+        state.activated = data;
+    },
+    updateLoading(state, data){
+        state.loading = data;
     }
+
 }
 
 var actions = {
@@ -35,10 +60,18 @@ var actions = {
         }).catch(err => err.message);
     },
 
-    getListChapters({commit}){
-        ChapterService.getListChapters().then(response => {
+    getListChapters({commit, state}){
+        commit('updateLoading', true);
+        let payload = {
+            page: state.page
+        }
+        if(state.keyword != '') payload.key_word = state.keyword;
+        if(state.activated != '') payload.activated = state.activated;
+        if(state.grade_id != '') payload.grade_id = state.grade_id;
+        ChapterService.getListChapters(payload).then(response => {
             if(response.status === 200)
                 commit('getListChapters', response.data);
+                commit('updateLoading', false);
             return response;
         }).catch(error => error.response);
     },
@@ -74,6 +107,21 @@ var actions = {
                 return total;
             }
             dispatch('getListChapters');
+            return response;
+        }).catch((error) => error.response);
+    }, 
+
+    getTotalPages({commit, state}){
+        let payload = {
+            get_count: 1,
+        }
+        if(state.keyword !== '') payload.key_word = state.keyword;
+        if(state.activated !== '') payload.activated = state.activated;
+        if(state.grade_id != '') payload.grade_id = state.grade_id;
+        return ChapterService.getTotalPages(payload).then((response) => {
+            if(response.status === 200) {
+                commit('getTotalPages', response.data)
+            }
             return response;
         }).catch((error) => error.response);
     }

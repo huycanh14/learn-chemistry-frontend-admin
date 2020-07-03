@@ -13,6 +13,7 @@ import VueToast from 'vue-toast-notification';
 // Import one of available themes
 import 'vue-toast-notification/dist/theme-default.css';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import VuePaginateAl from 'vue-paginate-al'
 
 
 import { AUTH_HEADER } from "./helpers/auth-header";
@@ -23,6 +24,7 @@ window.$ = $;
 
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2);
+Vue.component('vue-paginate-al', VuePaginateAl)
 Vue.use(AUTH_HEADER())
 Vue.use(CHECK_TOKEN())
 Vue.use(VueToast, {
