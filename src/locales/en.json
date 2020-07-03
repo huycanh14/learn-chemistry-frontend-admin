@@ -59,13 +59,17 @@
   },
   "table_gradechapter": {
     "name": "Name",
+    "_title": "Name of chapter",
+    "description": "Description",
     "created_at": "Created at",
     "updated_at": "Updated at",
     "actived": "Activated",
     "o_number": "Ordinal numbers",
     "title": "List of chapter",
     "action": "Actions",
-    "hover": "Click to add chapter"
+    "hover": "Click to add chapter",
+    "chapter_number": "Chapter number",
+    "grade": "Grade"
   },
   "form_chapter": {
     "title": "Create chapter",

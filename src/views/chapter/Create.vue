@@ -20,7 +20,7 @@
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
                     <label>{{ $t('form_chapter.description') }} </label>
-                    <textarea v-model="chapter.description" class="form-control" v-bind:placeholder="$t('form_chapter.description')"></textarea>
+                    <textarea v-model="chapter.description" class="form-control" v-bind:placeholder="$t('form_chapter.description')" required></textarea>
                 </div>
             </div>
         </div>

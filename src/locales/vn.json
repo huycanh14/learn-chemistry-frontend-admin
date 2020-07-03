@@ -59,13 +59,17 @@
   },
   "table_chapter": {
     "name": "Tên",
+    "_title": "Tên chương học",
+    "description": "Miêu tả",
     "created_at": "Ngày tạo",
     "updated_at": "Ngày sửa",
     "actived": "Trạng thái",
     "o_number": "Thứ tự",
     "title": "Danh sách chương học",
     "action": "Tác vụ",
-    "hover": "Thêm chương học"
+    "hover": "Thêm chương học",
+    "chapter_number": "Chương số",
+    "grade": "Khối học"
   },
   "form_chapter": {
     "title": "Tạo chương học mới",

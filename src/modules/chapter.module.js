@@ -4,10 +4,12 @@ import { TOTAL_IN_RELATIONSHIPS } from '../helpers/helper'
 var state = {
     count: 0,
     chapter: {
-
     },
     total_page: 1,
-    chapters: []
+    chapters: [],
+    keyword: '',
+    page: 1,
+    grade_id: ""
 };
 
 var getters = {
@@ -20,7 +22,7 @@ var mutations = {
     },
 
     getListChapters(state, data){
-        state.chapters = data.chapters;
+        state.chapters = data.data;
     }
 }
 

@@ -25,17 +25,17 @@
                         <th v-for="(item, index) in title" :key="index">
                             {{ item.name }}
                         </th>
-                        <th class="text-right" colspan="2">
+                        <th class="text-center" colspan="2">
                             {{$t('table_chapter.action')}}
                         </th>
                     </thead>
                     <tbody>
-                        <!-- <grid-template 
+                        <grid-template 
                             v-for="(chapter, index) in chapters" 
                             :key="chapter._id" 
                             :payload="chapter" 
                             :index="index">
-                        </grid-template> -->
+                        </grid-template>
                     </tbody>
                 </table>
                 </div>
@@ -47,7 +47,7 @@
 <script>
 import { mapState } from 'vuex'
 import Create from "./Create.vue"
-// import GridTemplate from "./GridTemplate.vue"
+import GridTemplate from "./GridTemplate.vue"
 import $ from "jquery";
 import Vue from "vue";
 import Loading from 'vue-loading-overlay';
@@ -57,7 +57,7 @@ import store from '../../store'
 
 export default {
     components: {
-        Loading, //GridTemplate
+        Loading, GridTemplate
     },
     data() {
         return {
@@ -68,15 +68,17 @@ export default {
             color: "#00AB00",
             title: [
                 { name: this.$t('table_chapter.o_number') },
-                { name: this.$t('table_chapter.name') },
+                { name: this.$t('table_chapter.chapter_number') },
+                { name: this.$t('table_chapter._title') },
+                { name: this.$t('table_chapter.grade') },
                 { name: this.$t('table_chapter.created_at') },
-                { name: this.$t('table_chapter.updated_at') },
                 { name: this.$t('table_chapter.actived') },
             ],
         }
     },
     methods: {
         createChapter() {
+            console.log(this.chapters, 1)
             let instance = null;
             this.$swal({
                 title: this.$t('form_chapter.title'),
@@ -103,7 +105,7 @@ export default {
     },
     beforeCreate() {
         let getTotals = [
-            // this.$store.dispatch('chapters/getListChapters'),
+            this.$store.dispatch('grades/getListGrades'),
             this.$store.dispatch('chapters/getListChapters')
         ];
         Promise.all(getTotals)
@@ -114,7 +116,6 @@ export default {
             console.error(error, 'error');
             this.isLoading = false;
         });
-        // this.isLoading = false;
     },
     mounted() {
         $(document).ready(function ($) {
