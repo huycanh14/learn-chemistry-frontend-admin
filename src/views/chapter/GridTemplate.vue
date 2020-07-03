@@ -14,6 +14,7 @@
                 :title="$t('clicks.cancel')"
                 data-toggle="tooltip" 
                 data-placement="right"
+                @click="updateChapter"
             ></font-awesome-icon>
         </td>
         <td> 
@@ -29,6 +30,10 @@
 <script>
 import { mapState } from 'vuex'
 import $ from "jquery";
+import i18n from '../../helpers/i18n'
+import store from '../../store'
+import Edit from "./Edit.vue"
+import Vue from "vue";
 export default {
     props: {
         payload: {
@@ -51,8 +56,10 @@ export default {
     },
     filters: {
         filterNameGrade: function(value, grades) {
-            if(grades.length > 0)
-                return grades.filter(grade => grade._id === value)[0].name;
+            if(grades.length > 0){
+                let name = grades.filter(grade => grade._id === value)[0];
+                if(name) return name.name;
+            }
             return value;
         },
         numberToDate: function(value) {
@@ -67,6 +74,29 @@ export default {
                 $('[title]').tooltip();
             })
         })
+    },
+    methods: {
+        updateChapter() {
+            let instance = null;
+            let res = this.payload;
+            this.$swal({
+                title: this.$t('form_chapter.title_update'),
+                html: '<div id="updateChapter"></div>',
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    let ComponentClass = Vue.extend(Edit);
+                    instance = new ComponentClass({
+                        propsData: {
+                            payload: res
+                        },
+                        i18n,
+                        store
+                    });
+                    instance.$mount();
+                    document.getElementById('updateChapter').appendChild(instance.$el);
+                }   
+            })
+        },
     },
 }
 </script>

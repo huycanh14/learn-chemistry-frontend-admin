@@ -31,8 +31,11 @@ const createChapter = (payload) => {
 
 const updateChapter = (payload) => {
     let data = {
-        name: payload.name,
-        activated: payload.activated
+        'title': payload.title,
+        'chapter_number': payload.chapter_number,
+        'relationships.grade_id': payload.relationships.grade_id,
+        'description': payload.description,
+        'activated': payload.activated
     };
     return axios.put(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_CHAPTER}/${payload._id}`, 
         qs.stringify(data)

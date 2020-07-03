@@ -72,12 +72,14 @@
     "grade": "Grade"
   },
   "form_chapter": {
-    "title": "Create chapter",
+    "title_create": "Create chapter",
+    "title_update": "Update chapter",
     "name": "Name of chapter",
     "status": "Status",
     "active": "active",
     "inactive": "inactive",
-    "submit": "Submit",
+    "submit_create": "Submit to create",
+    "submit_update": "Submit to update",
     "chapter_number": "Chapter number",
     "description": "Description",
     "grade": "Grade",

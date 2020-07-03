@@ -24,7 +24,9 @@ var mutations = {
     },
 
     getListChapters(state, data){
+        console.log(data)
         state.chapters = data.data;
+        state.loading = false;
     },
     
     getTotalPages(state, data){
@@ -68,10 +70,10 @@ var actions = {
         if(state.keyword != '') payload.key_word = state.keyword;
         if(state.activated != '') payload.activated = state.activated;
         if(state.grade_id != '') payload.grade_id = state.grade_id;
+        console.log(payload);
         ChapterService.getListChapters(payload).then(response => {
             if(response.status === 200)
                 commit('getListChapters', response.data);
-                commit('updateLoading', false);
             return response;
         }).catch(error => error.response);
     },
@@ -85,6 +87,7 @@ var actions = {
     },
 
     updateChapter({dispatch}, payload){
+        console.log(payload)
         return ChapterService.updateChapter(payload).then((response) => {
             if(response.status === 200)
                 dispatch('getListChapters');

@@ -72,12 +72,14 @@
     "grade": "Khối học"
   },
   "form_chapter": {
-    "title": "Tạo chương học mới",
+    "title_create": "Tạo chương học mới",
+    "title_update": "Sửa chương học mới",
     "name": "Tên chương học",
     "status": "Trạng thái",
     "active": "Kích hoạt",
     "inactive": "Vô hiệu hóa",
-    "submit": "Tạo mới",
+    "submit_create": "Tạo mới",
+    "submit_update": "Sửa đổi",
     "chapter_number": "Chương số",
     "description": "Miêu tả",
     "grade": "Khối học",

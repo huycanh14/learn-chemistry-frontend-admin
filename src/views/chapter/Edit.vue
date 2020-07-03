@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="doCreate">
+    <form @submit.prevent="doUpdate">
         <div class="row">
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
@@ -11,8 +11,8 @@
         <div class="row">
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
-                    <label>{{ $t('form_chapter.title_create') }} </label>
-                    <input type="text" class="form-control" v-bind:placeholder="$t('form_chapter.title_create')" v-model="chapter.title" required/>
+                    <label>{{ $t('form_chapter.title_update') }} </label>
+                    <input type="text" class="form-control" v-bind:placeholder="$t('form_chapter.title_update')" v-model="chapter.title" required/>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-12 col-12 pr-1">
                 <label >{{ $t('form_chapter.grade') }}</label>
-                <select class="form-control" v-model="chapter.grade_id"  v-bind:title="$t('form_chapter.grade')" required>
+                <select class="form-control" v-model="chapter.relationships.grade_id"  v-bind:title="$t('form_chapter.grade')" required>
                     <option v-for="grade in grades" :key="grade._id" :value="grade._id" >
                         {{grade.name }}
                     </option>
@@ -49,7 +49,7 @@
         </div>
         <div class="row">
             <div class="update ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary btn-round"> {{ $t('form_chapter.submit_create')}}</button>
+                <button type="submit" class="btn btn-primary btn-round"> {{ $t('form_chapter.submit_update')}}</button>
             </div>
         </div>
     </form>
@@ -57,6 +57,13 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+    props: {
+        payload: {}
+    },
+    created() {
+        this.chapter = { ...this.payload };
+        console.log(this.chapter)
+    },
     data() {
         return {
             chapter: {
@@ -75,17 +82,17 @@ export default {
         
     },
     methods: {
-        doCreate() {
-            this.$store.dispatch('chapters/createChapter', this.chapter).then(response => {
+        doUpdate() {
+            this.$store.dispatch('chapters/updateChapter', this.chapter).then(response => {
                 if(response.status == 200) {
-                    this.$toast.success(this.$t('messages.create_success'))
+                    this.$toast.success(this.$t('messages.update_success'))
                 } else {
-                    this.$toast.error(this.$t('messages.create_error'))
+                    this.$toast.error(this.$t('messages.update_error'))
                 }
             });
         }
     },
-     beforeCreate(){
+    beforeCreate(){
         let getInformation = [
             this.$store.dispatch('grades/getListGrades'),
         ];

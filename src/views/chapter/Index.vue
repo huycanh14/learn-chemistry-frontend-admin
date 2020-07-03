@@ -111,7 +111,7 @@ export default {
         createChapter() {
             let instance = null;
             this.$swal({
-                title: this.$t('form_chapter.title'),
+                title: this.$t('form_chapter.title_create'),
                 html: '<div id="CreateChapter"></div>',
                 showConfirmButton: false,
                 onBeforeOpen: () => {
