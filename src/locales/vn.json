@@ -49,7 +49,8 @@
     "update": "Click để cập nhật",
     "cancel": "Click để hủy cập nhật",
     "delete": "Click để xóa",
-    "dbclick": "Double click để sửa"
+    "dbclick": "Double click để sửa",
+    "list_lessons": "Danh sách bài học"
   },
   "title_delete": {
     "title": "Bạn có chắc chắn xóa",

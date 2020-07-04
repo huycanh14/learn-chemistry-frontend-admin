@@ -9,6 +9,16 @@
 
         <td v-if="chapter.activated == false" >{{$t('form_grade.inactive')}}</td>
         <td>
+            <router-link :to="{ name: 'list-lessons', params: { id: chapter._id } }">
+                <font-awesome-icon 
+                    :icon="['fas', 'book']" class="text-info"
+                    :title="$t('clicks.list_lessons')"
+                    data-toggle="tooltip" 
+                    data-placement="right"
+                ></font-awesome-icon>
+            </router-link>
+        </td>
+        <td>
             <font-awesome-icon 
                 :icon="['fas', 'edit']" class="text-info"
                 :title="$t('clicks.cancel')"

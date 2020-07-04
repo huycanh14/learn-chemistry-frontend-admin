@@ -26,7 +26,7 @@
                                 <th v-for="(item, index) in title" :key="index">
                                     {{ item.name }}
                                 </th>
-                                <th class="text-center" colspan="2">
+                                <th class="text-center" colspan="3">
                                     {{$t('table_chapter.action')}}
                                 </th>
                             </thead>

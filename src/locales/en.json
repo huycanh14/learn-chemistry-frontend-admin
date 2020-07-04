@@ -49,7 +49,8 @@
     "update": "Click to update",
     "remove": "Click to cancel update",
     "delete": "Click to delete",
-    "dbclick": "Double click to edit"
+    "dbclick": "Double click to edit",
+    "list_lessons": "List of lessons"
   },
   "title_delete": {
     "title": "Are you sure delete",

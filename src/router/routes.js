@@ -24,7 +24,12 @@ const routes = [
         {
           'path': 'chapter',
           'name': 'chapter',
-          component: () => import('../views/chapter/Index.vue')
+          component: () => import('../views/chapter/Index.vue'),
+        },
+        {
+          'path': 'chapter/list-lessons/:id',
+          'name': 'list-lessons',
+          component: () => import('../views/lesson/ListLessons.vue')
         }
       ]
     },
