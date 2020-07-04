@@ -22,6 +22,7 @@
                 :title="$t('clicks.delete')"
                 data-toggle="tooltip" 
                 data-placement="right"
+                @click="deleteItem"
             ></i>
         </td>
     </tr>
@@ -97,6 +98,42 @@ export default {
                 }   
             })
         },
+        deleteItem(){
+            this.$swal({
+                title: `${this.$t('title_delete.title')}: ${this.payload.title}`,
+                icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'), cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
+            }).then((result) => {
+                if(result.value) {
+                    this.$store.dispatch('chapters/countInRelationships', this.payload._id)
+                    .then(total => {
+                        if(total > 0) {
+                            this.$swal({
+                                title: `${this.payload.title}: ${this.$t('title_delete.title_relationship')} `, text: `Total: ${total}`, icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'),
+                                cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
+                            }).then((res) => {
+                                if(res.value) {
+                                    this.$store.dispatch('chapters/deleteChapter', this.payload._id).then(response => {
+                                        if(response.status == 200) {
+                                            this.$toast.success(this.$t('messages.delete_success'))
+                                        } else {
+                                            this.$toast.error(this.$t('messages.delete_error'))
+                                        }
+                                    });
+                                }
+                            })
+                        } else {
+                            this.$store.dispatch('chapters/deleteChapter', this.payload._id).then(response => {
+                                if(response.status == 200) {
+                                    this.$toast.success(this.$t('messages.delete_success'))
+                                } else {
+                                    this.$toast.error(this.$t('messages.delete_error'))
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
     },
 }
 </script>
