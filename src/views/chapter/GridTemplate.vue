@@ -90,7 +90,7 @@ export default {
                             payload: res
                         },
                         i18n,
-                        store
+                        store,
                     });
                     instance.$mount();
                     document.getElementById('updateChapter').appendChild(instance.$el);

@@ -62,7 +62,6 @@ export default {
     },
     created() {
         this.chapter = { ...this.payload };
-        console.log(this.chapter)
     },
     data() {
         return {
@@ -83,9 +82,14 @@ export default {
     },
     methods: {
         doUpdate() {
+            let data = {
+                data: []
+            }
             this.$store.dispatch('chapters/updateChapter', this.chapter).then(response => {
                 if(response.status == 200) {
+                    this.$store.commit('chapters/getListChapters', data);
                     this.$toast.success(this.$t('messages.update_success'))
+                    this.payload = { ...this.chapter}
                 } else {
                     this.$toast.error(this.$t('messages.update_error'))
                 }
@@ -102,7 +106,12 @@ export default {
         .catch(error => {
             console.error(error, 'error');
         });
-    }
+    },
+    watch: {
+        payload(newValue, oldValue) {
+            console.log(newValue, oldValue)
+        }
+    },
 }
 </script>
 <style lang="scss" scoped>

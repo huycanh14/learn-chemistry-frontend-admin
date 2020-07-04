@@ -43,7 +43,7 @@ export default {
           if(response.status != 200) {
             this.$swal(this.$t('form_login.error'), '', 'warning');
           } else {
-            this.$router.push({name: "Home"});
+            this.$router.push({name: "home"});
           }
         });
       },
