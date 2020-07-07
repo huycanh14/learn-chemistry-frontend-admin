@@ -43,13 +43,18 @@ var mutations = {
     updateGradeId(state, data){
         state.grade_id = data;
     },
+
     updateActivated(state, data){
         state.activated = data;
     },
+
     updateLoading(state, data){
         state.loading = data;
-    }
+    },
 
+    updateChapter(state, data){
+        state.chapter = data.data;
+    }
 }
 
 var actions = {
@@ -120,6 +125,15 @@ var actions = {
         return ChapterService.getTotalPages(payload).then((response) => {
             if(response.status === 200) {
                 commit('getTotalPages', response.data)
+            }
+            return response;
+        }).catch((error) => error.response);
+    },
+
+    getChapterByID({commit}, _id){
+        return ChapterService.getChapterByID(_id).then(response => {
+            if(response.status === 200) {
+                commit('updateChapter', response.data)
             }
             return response;
         }).catch((error) => error.response);

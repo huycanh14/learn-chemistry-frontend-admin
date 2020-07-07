@@ -87,6 +87,20 @@
     "all": "All"
   },
   "btn": {
-    "search": "Search"
+    "search": "Search",
+    "create": "Submit to create",
+    "update": "Submit to update"
+  },
+  "lesson": {
+    "title_create": "Create lesson",
+    "title_update": "Update lesson",
+    "card_title": "Lesson number",
+    "hover_add": "Create lesson",
+    "lesson_number": "Lesson number",
+    "title": "Title",
+    "description": "Description",
+    "status": "Status",
+    "active": "active",
+    "inactive": "inactive"
   }
 }

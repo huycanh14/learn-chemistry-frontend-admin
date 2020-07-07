@@ -74,7 +74,7 @@
   },
   "form_chapter": {
     "title_create": "Tạo chương học mới",
-    "title_update": "Sửa chương học mới",
+    "title_update": "Sửa chương học",
     "name": "Tên chương học",
     "status": "Trạng thái",
     "active": "Kích hoạt",
@@ -87,6 +87,20 @@
     "all": "Tất cả"
   },
   "btn": {
-    "search": "Tìm kiếm"
+    "search": "Tìm kiếm",
+    "create": "Tạo mới",
+    "update": "Sửa đổi"
+  },
+  "lesson": {
+    "title_create": "Tạo bài học mới",
+    "title_update": "Sửa bài học",
+    "card_title": "Bài học số",
+    "hover_add": "Thêm bài học",
+    "lesson_number": "Bài học số",
+    "title": "Tiêu đề",
+    "description": "Miêu tả",
+    "status": "Trạng thái",
+    "active": "Kích hoạt",
+    "inactive": "Vô hiệu hóa"
   }
 }

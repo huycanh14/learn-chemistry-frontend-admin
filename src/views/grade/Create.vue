@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="doLogin">
+    <form @submit.prevent="doCreate">
         <div class="row">
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
@@ -40,7 +40,7 @@ export default {
         }
     },
     methods: {
-        doLogin() {
+        doCreate() {
             this.$store.dispatch('grades/createGrade', this.grade).then(response => {
                 if(response.status == 200) {
                     this.$toast.success(this.$t('messages.create_success'))

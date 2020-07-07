@@ -64,6 +64,11 @@ const getTotalPages = (payload) => {
     }).then((response) => response).catch((error) => error.response);
 };
 
+const getChapterByID = (_id) => {
+    return axios.get(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_CHAPTER}/${_id}`,
+    ).then((response) => response).catch((error) => error.response);
+}
+
 export const ChapterService = {
-    getTotalChapters, createChapter, updateChapter, deleteChapter, countInRelationships, getListChapters, getTotalPages
+    getTotalChapters, createChapter, updateChapter, deleteChapter, countInRelationships, getListChapters, getTotalPages, getChapterByID
 };
