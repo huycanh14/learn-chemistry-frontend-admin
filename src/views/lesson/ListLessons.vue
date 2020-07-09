@@ -47,7 +47,6 @@ export default {
     },
     data() {
         return {
-            isLoading: true,
             fullPage: false,
             background_color: "#4B4B4B",
             color: "#00AB00",
@@ -56,7 +55,8 @@ export default {
     computed: {
         ...mapState({
             lessons: state => state.lessons.lessons,
-            chapter: state => state.chapters.chapter
+            chapter: state => state.chapters.chapter,
+            isLoading: state => state.lessons.loading,
         }),
     },
     created() {
@@ -67,11 +67,9 @@ export default {
         ];
         Promise.all(getInfo)
         .then(() =>{
-            this.isLoading = false;
         })
         .catch(error => {
             console.error(error, 'error');
-            this.isLoading = false;
         });
         
     },

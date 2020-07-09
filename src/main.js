@@ -19,14 +19,14 @@ import VuePaginateAl from 'vue-paginate-al'
 import { AUTH_HEADER } from "./helpers/auth-header";
 import { CHECK_TOKEN } from "./helpers/axios-config";
 
-const $ = require('jquery');
-window.$ = $;
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2);
 Vue.component('vue-paginate-al', VuePaginateAl)
 Vue.use(AUTH_HEADER())
 Vue.use(CHECK_TOKEN())
+Vue.use( CKEditor );
 Vue.use(VueToast, {
   position: 'top-right',
   duration: 3000

@@ -18,12 +18,20 @@
 
 <script>
 export default {
+    data() {
+        return {
+            text: ''
+        }
+    },
     props: {
         payload: {
         },
     },
     filters: {
-        shortText: function(text, length) {
+        shortText: function(value, length) {
+            var div = document.createElement("div");
+            div.innerHTML = value;
+            var text = div.textContent || div.innerText || "";
             return (text.length > length) ? `${text.substring(0, length)}...` : text ;
         },
         numberToDate: function(value) {

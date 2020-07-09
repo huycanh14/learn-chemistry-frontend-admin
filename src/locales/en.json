@@ -43,7 +43,8 @@
     "update_success": "Update is success",
     "update_error": "Update is failed",
     "delete_success": "Delete is success",
-    "delete_error": "Delete is failed"
+    "delete_error": "Delete is failed",
+    "required": "No full information"
   },
   "clicks" :{
     "update": "Click to update",

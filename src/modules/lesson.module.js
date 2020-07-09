@@ -5,7 +5,7 @@ var state = {
     },
     lessons: [],
     chapter_id: "",
-
+    loading: true
 };
 
 var getters = {
@@ -13,20 +13,26 @@ var getters = {
 };
 
 var mutations = {
-    updateLessons(state, data){
+    getLessons(state, data){
+        state.loading = false;
         state.lessons = data.data;
     },
 
     saveChapterID(state, data){
         state.chapter_id = data;
-    }
+    },
+
+    updateLoading(state, data){
+        state.loading = data;
+    },
 };
 
 var actions = {
     getAllLessonByChapterID ({commit, state}) {
+        commit('updateLoading', true);
         return LessonService.getAllLessonByChapterID(state.chapter_id).then((response) => {
             if(response.status === 200)
-                commit('updateLessons', response.data);
+                commit('getLessons', response.data);
             return response;
         }).catch((error) => error.response);
     },

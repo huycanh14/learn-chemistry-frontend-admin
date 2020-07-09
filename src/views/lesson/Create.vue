@@ -20,7 +20,15 @@
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
                     <label>{{ $t('lesson.description') }} </label>
-                    <textarea v-model="lesson.description" class="form-control" v-bind:placeholder="$t('lesson.description')" required></textarea>
+                    <ckeditor id="create-lesson" 
+                        :editor="editor" 
+                        v-model="lesson.description" 
+                        :config="editorConfig" 
+                        :disabled="editorDisabled "
+                        @ready="onReady"
+                        v-bind:placeholder="$t('lesson.description')"
+                        class="form-control"
+                    ></ckeditor>
                 </div>
             </div>
         </div>
@@ -47,6 +55,8 @@
 </template>
 <script>
 import { mapActions, mapState } from 'vuex'
+import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+// import $ from "jquery";
 export default {
     data() {
         return {
@@ -55,6 +65,12 @@ export default {
                 activated: true,
                 lesson_number: 1,
                 description: '',
+            },
+            editor: DecoupledEditor,
+            editorDisabled: false,
+            editorConfig: {
+                placeholder: this.$t('lesson.description'),
+                
             }
         }
     },
@@ -68,6 +84,10 @@ export default {
             createLesson: 'lessons/createLesson'
         }),
         doCreate() {
+            if(this.lesson.description === "") {
+                this.$toast.warning(this.$t('messages.required'))
+                return false;
+            }
             let data = {
                 title: this.lesson.title,
                 description: this.lesson.description,
@@ -83,18 +103,24 @@ export default {
                     this.$toast.error(this.$t('messages.create_error'))
                 }
             });
+        },
+        onReady( editor )  {
+            editor.ui.getEditableElement().parentElement.insertBefore(
+                editor.ui.view.toolbar.element,
+                editor.ui.getEditableElement()
+            );
         }
     },
     beforeCreate(){
-        let getInformation = [
-            this.$store.dispatch('grades/getListGrades'),
-        ];
-        Promise.all(getInformation)
-        .then(() =>{
-        })
-        .catch(error => {
-            console.error(error, 'error');
-        });
+       
+    },
+    mounted() {
+        // $(document).ready(function ($) {
+        //     con
+        //     $('#create-lesson').click(function() { 
+        //         console.log('click ckeditor')
+        //     });
+        // })
     },
     
 }
@@ -102,5 +128,15 @@ export default {
 <style lang="scss" scoped>
 form {
     text-align: left;
+}
+.ck-editor__editable {
+    min-height: 250px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    color: #66615b;
+    line-height: normal;
+    transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    box-shadow: none;
 }
 </style>

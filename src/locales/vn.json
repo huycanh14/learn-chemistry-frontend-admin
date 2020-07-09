@@ -43,7 +43,8 @@
     "update_success": "Sửa thông tin thành công",
     "update_error": "Sửa thông tin thất bại",
     "delete_success": "Xóa thông tin thành công",
-    "delete_error": "Xóa thông tin thất bại"
+    "delete_error": "Xóa thông tin thất bại",
+    "required": "Chưa điền thông tin đầy đủ"
   },
   "clicks" :{
     "update": "Click để cập nhật",
