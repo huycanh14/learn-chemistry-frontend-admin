@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import CardStatsHome from "../components/CardStatsHome.vue"
+import CardStatsHome from "../../components/CardStatsHome.vue"
 import { mapState } from 'vuex'
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';

@@ -61,7 +61,7 @@ var actions = {
     getTotalChapters({commit}){
         return ChapterService.getTotalChapters().then(response => {
             if (response.status === 200)
-                commit('getTotalChapters', response.date)
+                commit('getTotalChapters', response.data)
             return response;
         }).catch(err => err.message);
     },

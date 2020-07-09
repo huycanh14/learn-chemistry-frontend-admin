@@ -9,7 +9,7 @@ const routes = [
         {
           path: "",
           name: "home",
-          component: () => import('../views/Home.vue')
+          component: () => import('../views/pages/Home.vue')
         },
         {
           path: "grade",
@@ -19,7 +19,7 @@ const routes = [
         {
           path: 'about',
           name: 'about',
-          component: () => import('../views/About.vue')
+          component: () => import('../views/pages/About.vue')
         },
         {
           'path': 'chapter',
@@ -36,7 +36,7 @@ const routes = [
     {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/Login.vue')
+      component: () => import('../views/pages/Login.vue')
     },
     { path: "*", redirect: "/" },
 ]
