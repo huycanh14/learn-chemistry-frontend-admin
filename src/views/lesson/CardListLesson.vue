@@ -2,7 +2,7 @@
   <div class="col-md-4 d-flex box-shadow">
     <div class="card border-primary mb-3 w-100">
       <div class="multi-button">
-        <button class="nc-icon nc-simple-remove text-danger">
+        <button class="nc-icon nc-simple-remove text-danger" @click="deleteLesson">
         </button>
       </div>
       <div class="container">
@@ -30,42 +30,79 @@
 <script>
 import $ from "jquery";
 export default {
-  data() {
-    return {
-      text: "",
-    };
-  },
-  props: {
-    payload: {},
-  },
-  filters: {
-    shortText: function(value, length) {
-      var div = document.createElement("div");
-      div.innerHTML = value;
-      var text = div.textContent || div.innerText || "";
-      return text.length > length ? `${text.substring(0, length)}...` : text;
+    data() {
+        return {
+        };
     },
-    numberToDate: function(value) {
-      return `${new Date(value).toLocaleString().split(",")[1]} - ${
-        new Date(value).toLocaleString().split(",")[0]
-      }`;
+    props: {
+        payload: {},
     },
-  },
-  watch: {},
-  mounted() {
-    $(document).ready(function($) {
-      $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-        $("[title]").tooltip();
-      });
-    });
-  },
+    filters: {
+        shortText: function(value, length) {
+        var div = document.createElement("div");
+        div.innerHTML = value;
+        var text = div.textContent || div.innerText || "";
+        return text.length > length ? `${text.substring(0, length)}...` : text;
+        },
+        numberToDate: function(value) {
+        return `${new Date(value).toLocaleString().split(",")[1]} - ${
+            new Date(value).toLocaleString().split(",")[0]
+        }`;
+        },
+    },
+    watch: {},
+    mounted() {
+        $(document).ready(function($) {
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+            $("[title]").tooltip();
+        });
+        });
+    },
+    methods: {
+        deleteLesson() {
+            this.$swal({
+                title: `${this.$t('title_delete.title')}: ${this.payload.title}`,
+                icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'), cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
+            }).then((result) => {
+                if(result.value) {
+                    this.$store.dispatch('lessons/countInRelationships', this.payload._id)
+                    .then(total => {
+                        if(total > 0) {
+                            this.$swal({
+                                title: `${this.payload.title}: ${this.$t('title_delete.title_relationship')} `, text: `Total: ${total}`, icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'),
+                                cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
+                            }).then((res) => {
+                                if(res.value) {
+                                    this.$store.dispatch('lessons/deleteLesson', this.payload._id).then(response => {
+                                        if(response.status == 200) {
+                                            this.$toast.success(this.$t('messages.delete_success'))
+                                        } else {
+                                            this.$toast.error(this.$t('messages.delete_error'))
+                                        }
+                                    });
+                                }
+                            })
+                        } else {
+                            this.$store.dispatch('lessons/deleteLesson', this.payload._id).then(response => {
+                                if(response.status == 200) {
+                                    this.$toast.success(this.$t('messages.delete_success'))
+                                } else {
+                                    this.$toast.error(this.$t('messages.delete_error'))
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
-    position: relative;
+  position: relative;
   box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.05);
   background: rgba(235, 233, 249, 1);
   background: -moz-radial-gradient(

@@ -25,6 +25,21 @@ const createLesson = (payload) => {
 
 };
 
+const deleteLesson = (_id) => {
+    return axios.delete(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_LESSON}/${_id}`,
+    ).then((response) => response).catch((error) => error.response);
+
+};
+
+const countInRelationships = (_id) => {
+    return axios.get(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_LESSON}`, {
+        params: {
+            relationships: 1,
+            lesson_id: _id
+        }
+    }).then((response) => response).catch((error) => error.response);
+};
+
 export const LessonService = {
-    getAllLessonByChapterID, createLesson
+    getAllLessonByChapterID, createLesson, deleteLesson, countInRelationships
 };
