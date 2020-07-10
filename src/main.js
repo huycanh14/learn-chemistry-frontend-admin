@@ -20,6 +20,7 @@ import { AUTH_HEADER } from "./helpers/auth-header";
 import { CHECK_TOKEN } from "./helpers/axios-config";
 
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2);
@@ -36,5 +37,6 @@ new Vue({
   router,
   store,
   i18n,
+  vuetify,
   render: h => h(App)
 }).$mount('#app')

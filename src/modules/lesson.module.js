@@ -28,6 +28,7 @@ var mutations = {
     },
 
     updateLesson(state, data){
+        state.loading = false;
         state.lesson = data.data;
     }
 };
@@ -71,6 +72,7 @@ var actions = {
     },
 
     getLessonByID({commit}, _id) {
+        commit('updateLoading', true);
         return LessonService.getLessonByID(_id).then(response => {
             if(response.status === 200){
                 commit('updateLesson', response.data);

@@ -103,6 +103,12 @@
     "description": "Miêu tả",
     "status": "Trạng thái",
     "active": "Kích hoạt",
-    "inactive": "Vô hiệu hóa"
+    "inactive": "Vô hiệu hóa",
+    "title_tab": {
+      "tab_theory": "Lý thuyết",
+      "tab_detail": "Chi tiết",
+      "tab_type_of_lesson": "Dạng bài tập",
+      "tab_exercise": "Bài tập"
+    }
   }
 }

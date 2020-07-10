@@ -103,6 +103,12 @@
     "description": "Description",
     "status": "Status",
     "active": "active",
-    "inactive": "inactive"
+    "inactive": "inactive",
+    "title_tab": {
+      "tab_theory": "Theory",
+      "tab_detail": "Detail",
+      "tab_type_of_lesson": "Type of lesson",
+      "tab_exercise": "Exercise"
+    }
   }
 }
