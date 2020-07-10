@@ -2,26 +2,27 @@
   <div class="col-md-4 d-flex box-shadow">
     <div class="card border-primary mb-3 w-100">
       <div class="multi-button">
-        <button class="nc-icon nc-simple-remove text-danger" @click="deleteLesson">
-        </button>
+        <button
+          class="nc-icon nc-simple-remove text-danger"
+          @click="deleteLesson"
+        ></button>
       </div>
-      <div class="container">
-        <div class="card-header">
-          {{ $t("lesson.card_title") }} : {{ payload.lesson_number }}
-          
-        </div>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ payload.title }}</h5>
-          <p class="card-text">
-            <cite>{{ payload.description | shortText(200) }}</cite>
-          </p>
-          <a href="#" class="mt-auto btn btn-lg btn-block btn-primary"
-            >Go somewhere</a
-          >
-        </div>
-        <div class="card-footer text-muted">
-          {{ payload.created_at | numberToDate }}
-        </div>
+      <div class="card-header">
+        {{ $t("lesson.card_title") }} : {{ payload.lesson_number }}
+      </div>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ payload.title }}</h5>
+        <p class="card-text">
+          <cite>{{ payload.description | shortText(200) }}</cite>
+        </p>
+        <router-link 
+          :to="{name: 'detail-lesson', params:{id: payload._id} }" 
+          class="mt-auto btn btn-lg btn-block btn-primary">
+          {{ $t("btn.details") }}
+        </router-link>
+      </div>
+      <div class="card-footer text-muted">
+        {{ payload.created_at | numberToDate }}
       </div>
     </div>
   </div>
@@ -30,73 +31,90 @@
 <script>
 import $ from "jquery";
 export default {
-    data() {
-        return {
-        };
+  data() {
+    return {};
+  },
+  props: {
+    payload: {},
+  },
+  filters: {
+    shortText: function(value, length) {
+      var div = document.createElement("div");
+      div.innerHTML = value;
+      var text = div.textContent || div.innerText || "";
+      return text.length > length ? `${text.substring(0, length)}...` : text;
     },
-    props: {
-        payload: {},
+    numberToDate: function(value) {
+      return `${new Date(value).toLocaleString().split(",")[1]} - ${
+        new Date(value).toLocaleString().split(",")[0]
+      }`;
     },
-    filters: {
-        shortText: function(value, length) {
-        var div = document.createElement("div");
-        div.innerHTML = value;
-        var text = div.textContent || div.innerText || "";
-        return text.length > length ? `${text.substring(0, length)}...` : text;
-        },
-        numberToDate: function(value) {
-        return `${new Date(value).toLocaleString().split(",")[1]} - ${
-            new Date(value).toLocaleString().split(",")[0]
-        }`;
-        },
-    },
-    watch: {},
-    mounted() {
-        $(document).ready(function($) {
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-            $("[title]").tooltip();
-        });
-        });
-    },
-    methods: {
-        deleteLesson() {
-            this.$swal({
-                title: `${this.$t('title_delete.title')}: ${this.payload.title}`,
-                icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'), cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
-            }).then((result) => {
-                if(result.value) {
-                    this.$store.dispatch('lessons/countInRelationships', this.payload._id)
-                    .then(total => {
-                        if(total > 0) {
-                            this.$swal({
-                                title: `${this.payload.title}: ${this.$t('title_delete.title_relationship')} `, text: `Total: ${total}`, icon: 'warning', showCancelButton: true, confirmButtonText: this.$t('title_delete.btn_conform'),
-                                cancelButtonText: this.$t('title_delete.btn_cancel'), showCloseButton: true,
-                            }).then((res) => {
-                                if(res.value) {
-                                    this.$store.dispatch('lessons/deleteLesson', this.payload._id).then(response => {
-                                        if(response.status == 200) {
-                                            this.$toast.success(this.$t('messages.delete_success'))
-                                        } else {
-                                            this.$toast.error(this.$t('messages.delete_error'))
-                                        }
-                                    });
-                                }
-                            })
+  },
+  watch: {},
+  mounted() {
+    $(document).ready(function($) {
+      $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $("[title]").tooltip();
+      });
+    });
+  },
+  methods: {
+    deleteLesson() {
+      this.$swal({
+        title: `${this.$t("title_delete.title")}: ${this.payload.title}`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: this.$t("title_delete.btn_conform"),
+        cancelButtonText: this.$t("title_delete.btn_cancel"),
+        showCloseButton: true,
+      }).then((result) => {
+        if (result.value) {
+          this.$store
+            .dispatch("lessons/countInRelationships", this.payload._id)
+            .then((total) => {
+              if (total > 0) {
+                this.$swal({
+                  title: `${this.payload.title}: ${this.$t(
+                    "title_delete.title_relationship"
+                  )} `,
+                  text: `Total: ${total}`,
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonText: this.$t("title_delete.btn_conform"),
+                  cancelButtonText: this.$t("title_delete.btn_cancel"),
+                  showCloseButton: true,
+                }).then((res) => {
+                  if (res.value) {
+                    this.$store
+                      .dispatch("lessons/deleteLesson", this.payload._id)
+                      .then((response) => {
+                        if (response.status == 200) {
+                          this.$toast.success(
+                            this.$t("messages.delete_success")
+                          );
                         } else {
-                            this.$store.dispatch('lessons/deleteLesson', this.payload._id).then(response => {
-                                if(response.status == 200) {
-                                    this.$toast.success(this.$t('messages.delete_success'))
-                                } else {
-                                    this.$toast.error(this.$t('messages.delete_error'))
-                                }
-                            });
+                          this.$toast.error(this.$t("messages.delete_error"));
                         }
-                    });
-                }
+                      });
+                  }
+                });
+              } else {
+                this.$store
+                  .dispatch("lessons/deleteLesson", this.payload._id)
+                  .then((response) => {
+                    if (response.status == 200) {
+                      this.$toast.success(this.$t("messages.delete_success"));
+                    } else {
+                      this.$toast.error(this.$t("messages.delete_error"));
+                    }
+                  });
+              }
             });
         }
+      });
     },
+  },
 };
 </script>
 
@@ -157,11 +175,11 @@ export default {
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebe9f9', endColorstr='#c1bfea', GradientType=1 );
   cursor: pointer;
-  &:hover .multi-button, .multi-button:focus-within   {
+  &:hover .multi-button,
+  .multi-button:focus-within {
     opacity: 1;
     transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
   }
-  
 }
 i {
   font-size: 32px;
@@ -169,7 +187,7 @@ i {
 }
 body .card .multi-button {
   z-index: 0;
-    opacity: 0;
+  opacity: 0;
   position: absolute;
   right: 0%;
   border-radius: 100%;
@@ -191,12 +209,4 @@ body .card .multi-button button {
   transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
   background-color: oldlace;
 }
-
-body .card .content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-}
-
 </style>

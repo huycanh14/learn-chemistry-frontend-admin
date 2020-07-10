@@ -90,7 +90,8 @@
   "btn": {
     "search": "Tìm kiếm",
     "create": "Tạo mới",
-    "update": "Sửa đổi"
+    "update": "Sửa đổi",
+    "details": "Chi tiết"
   },
   "lesson": {
     "title_create": "Tạo bài học mới",

@@ -26,6 +26,10 @@ var mutations = {
     updateLoading(state, data){
         state.loading = data;
     },
+
+    updateLesson(state, data){
+        state.lesson = data.data;
+    }
 };
 
 var actions = {
@@ -64,7 +68,16 @@ var actions = {
             dispatch('getAllLessonByChapterID');
             return response;
         }).catch((error) => error.response);
-    }, 
+    },
+
+    getLessonByID({commit}, _id) {
+        return LessonService.getLessonByID(_id).then(response => {
+            if(response.status === 200){
+                commit('updateLesson', response.data);
+            }
+            return response;
+        }).catch((error) => error.response);
+    }
 };
 
 export default {

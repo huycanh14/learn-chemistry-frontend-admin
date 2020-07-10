@@ -40,6 +40,11 @@ const countInRelationships = (_id) => {
     }).then((response) => response).catch((error) => error.response);
 };
 
+const getLessonByID = (_id) => {
+    return axios.get(`${process.env.VUE_APP_URL_API}${process.env.VUE_APP_API}${process.env.VUE_APP_LESSON}/${_id}`,
+    ).then((response) => response).catch((error) => error.response);
+}
+
 export const LessonService = {
-    getAllLessonByChapterID, createLesson, deleteLesson, countInRelationships
+    getAllLessonByChapterID, createLesson, deleteLesson, countInRelationships, getLessonByID,
 };

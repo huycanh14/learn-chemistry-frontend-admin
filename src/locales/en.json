@@ -90,7 +90,8 @@
   "btn": {
     "search": "Search",
     "create": "Submit to create",
-    "update": "Submit to update"
+    "update": "Submit to update",
+    "details": "To details"
   },
   "lesson": {
     "title_create": "Create lesson",

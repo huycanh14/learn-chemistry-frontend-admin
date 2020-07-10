@@ -30,6 +30,11 @@ const routes = [
           'path': 'chapter/list-lessons/:id',
           'name': 'list-lessons',
           component: () => import('../views/lesson/ListLessons.vue')
+        },
+        {
+          'path': 'lesson/:id',
+          'name': 'detail-lesson',
+          component: () => import('../views/lesson/Detail.vue')
         }
       ]
     },
