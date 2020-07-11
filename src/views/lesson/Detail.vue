@@ -93,7 +93,7 @@ export default {
     },
     created() {
         let getInfo = [
-            this.getLessonByID(this.$route.params.id)
+            this.getLessonByID(this.$route.params.id),
         ];
         Promise.all(getInfo)
         .then(() =>{
@@ -105,7 +105,7 @@ export default {
     },
     methods: {
         ...mapActions({
-            getLessonByID: 'lessons/getLessonByID'
+            getLessonByID: 'lessons/getLessonByID',
         })
     },
 }

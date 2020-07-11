@@ -4,6 +4,9 @@ import { TOTAL_IN_RELATIONSHIPS } from '../helpers/helper'
 var state = {
     count: 0,
     chapter: {
+        relationships: {
+            grade_id: ""
+        }
     },
     pages: 1,
     chapters: [],
@@ -66,14 +69,16 @@ var actions = {
         }).catch(err => err.message);
     },
 
-    getListChapters({commit, state}){
+    getListChapters({commit, state}, grade_id){
         commit('updateLoading', true);
         let payload = {
             page: state.page
         }
         if(state.keyword != '') payload.key_word = state.keyword;
         if(state.activated != '') payload.activated = state.activated;
-        if(state.grade_id != '') payload.grade_id = state.grade_id;
+        if(grade_id){
+            payload.grade_id = grade_id;
+        } else if(state.grade_id != '') payload.grade_id = state.grade_id;
         ChapterService.getListChapters(payload).then(response => {
             if(response.status === 200)
                 commit('getListChapters', response.data);

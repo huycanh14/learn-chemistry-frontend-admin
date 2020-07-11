@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app id ="app">
     <router-view />
-  </div>
+  </v-app>
 </template>
 <style scoped >
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,200");

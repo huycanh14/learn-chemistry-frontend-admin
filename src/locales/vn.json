@@ -91,7 +91,8 @@
     "search": "Tìm kiếm",
     "create": "Tạo mới",
     "update": "Sửa đổi",
-    "details": "Chi tiết"
+    "details": "Chi tiết",
+    "cancel": "Hủy bỏ"
   },
   "lesson": {
     "title_create": "Tạo bài học mới",

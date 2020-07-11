@@ -32,7 +32,7 @@ const createChapter = (payload) => {
 const updateChapter = (payload) => {
     let data = {
         'title': payload.title,
-        'chapter_number': payload.chapter_number,
+        'chapter_number':parseInt(payload.chapter_number),
         'relationships.grade_id': payload.relationships.grade_id,
         'description': payload.description,
         'activated': payload.activated

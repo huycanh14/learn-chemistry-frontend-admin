@@ -3,6 +3,10 @@ import { TOTAL_IN_RELATIONSHIPS } from '../helpers/helper'
 
 var state = {
     lesson: {
+        relationships: {
+            grade_id: "",
+            chapter_id: ""
+        }
     },
     lessons: [],
     chapter_id: "",
@@ -79,7 +83,14 @@ var actions = {
             }
             return response;
         }).catch((error) => error.response);
-    }
+    },
+
+    updateLesson({commit}, payload){
+        return LessonService.updateLesson(payload).then((response) => {
+            commit('updateLesson', response.data);
+            return response;
+        }).catch((error) => error.response);
+    },
 };
 
 export default {

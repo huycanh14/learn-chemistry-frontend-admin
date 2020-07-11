@@ -91,7 +91,8 @@
     "search": "Search",
     "create": "Submit to create",
     "update": "Submit to update",
-    "details": "To details"
+    "details": "To details",
+    "cancel": "To cancel"
   },
   "lesson": {
     "title_create": "Create lesson",
