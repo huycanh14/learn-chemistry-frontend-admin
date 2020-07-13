@@ -111,5 +111,13 @@
       "tab_type_of_lesson": "Type of lesson",
       "tab_exercise": "Exercise"
     }
+  },
+  "theory": {
+    "title_create": "Create thoery",
+    "title_update": "Update theory",
+    "content": "Content",
+    "status": "Status",
+    "active": "active",
+    "inactive": "inactive"
   }
 }

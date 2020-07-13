@@ -46,7 +46,6 @@ const getLessonByID = (_id) => {
 };
 
 const updateLesson = (payload) => {
-    console.log(payload);
     let data = {
         'title': payload.title,
         'lesson_number': parseInt(payload.lesson_number),

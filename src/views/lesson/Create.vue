@@ -70,6 +70,7 @@ export default {
             editorDisabled: false,
             editorConfig: {
                 placeholder: this.$t('lesson.description'),
+                extraPlugins: 'fixed'
                 
             }
         }

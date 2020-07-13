@@ -5,6 +5,7 @@ import grades from '../modules/grade.module'
 import chapters from '../modules/chapter.module'
 import documents from '../modules/document.module'
 import lessons from '../modules/lesson.module'
+import theories from '../modules/theory.module'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,8 @@ export default new Vuex.Store({
     grades,
     chapters,
     documents,
-    lessons
+    lessons,
+    theories
   }
 
 })

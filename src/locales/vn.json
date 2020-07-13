@@ -111,5 +111,13 @@
       "tab_type_of_lesson": "Dạng bài tập",
       "tab_exercise": "Bài tập"
     }
+  },
+  "theory": {
+    "title_create": "Tạo lý thuyết",
+    "title_update": "Sửa lý thuyết",
+    "content": "Nội dung",
+    "status": "Trạng thái",
+    "active": "Kích hoạt",
+    "inactive": "Vô hiệu hóa"
   }
 }
