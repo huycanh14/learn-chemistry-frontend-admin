@@ -20,7 +20,7 @@
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
                     <label>{{ $t('lesson.description') }} </label>
-                    <ckeditor id="create-lesson" 
+                    <!-- <ckeditor id="create-lesson" 
                         :editor="editor" 
                         v-model="lesson.description" 
                         :config="editorConfig" 
@@ -28,7 +28,8 @@
                         @ready="onReady"
                         v-bind:placeholder="$t('lesson.description')"
                         class="form-control"
-                    ></ckeditor>
+                    ></ckeditor> -->
+                    <textarea name="create-lesson" id="create-lesson" ></textarea>
                 </div>
             </div>
         </div>
@@ -55,8 +56,9 @@
 </template>
 <script>
 import { mapActions, mapState } from 'vuex'
-import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
-// import $ from "jquery";
+import $ from "jquery";
+// import {CKEDITOR } from "@/assets/ckeditor/ckeditor"
+// import * as CKEDITOR from  '@/assets/ckeditor/ckeditor';
 export default {
     data() {
         return {
@@ -66,7 +68,6 @@ export default {
                 lesson_number: 1,
                 description: '',
             },
-            editor: DecoupledEditor,
             editorDisabled: false,
             editorConfig: {
                 placeholder: this.$t('lesson.description'),
@@ -110,22 +111,26 @@ export default {
                 editor.ui.view.toolbar.element,
                 editor.ui.getEditableElement()
             );
-        }
+        },
+
     },
     beforeCreate(){
        
     },
     mounted() {
-        // $(document).ready(function ($) {
-        //     con
-        //     $('#create-lesson').click(function() { 
-        //         console.log('click ckeditor')
-        //     });
-        // })
+        $(document).ready(function () {
+            // CKEDITOR.replace( 'create-lesson' );
+        })
     },
+    created() {
+        let ckeditor  = document.createElement('script');    
+        ckeditor .setAttribute('src',"//cdn.ckeditor.com/4.6.2/full/ckeditor.js");
+        document.head.appendChild(ckeditor );
+    }
     
 }
 </script>
+
 <style lang="scss" scoped>
 form {
     text-align: left;

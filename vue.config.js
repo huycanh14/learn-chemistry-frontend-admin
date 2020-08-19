@@ -9,5 +9,11 @@ module.exports = {
   },
   "transpileDependencies": [
     "vuetify"
-  ]
+  ],
+  configureWebpack: {
+      "externals": {
+      "CKEDITOR": "window.CKEDITOR"
+    }
+  }
+  
 }

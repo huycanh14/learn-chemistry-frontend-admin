@@ -19,19 +19,24 @@ import VuePaginateAl from 'vue-paginate-al'
 import { AUTH_HEADER } from "./helpers/auth-header";
 import { CHECK_TOKEN } from "./helpers/axios-config";
 
-import CKEditor from '@ckeditor/ckeditor5-vue';
 import vuetify from './plugins/vuetify';
+// import "@/assets/ckeditor/ckeditor"
+// Vue.prototype.CKEDITOR = CKEDITOR
+import LoadScript from 'vue-plugin-load-script';
+Vue.use(LoadScript);
+
+Vue.loadScript("@/assets/ckeditor/ckeditor.js")
 
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2);
 Vue.component('vue-paginate-al', VuePaginateAl)
 Vue.use(AUTH_HEADER())
 Vue.use(CHECK_TOKEN())
-Vue.use( CKEditor );
 Vue.use(VueToast, {
   position: 'top-right',
   duration: 3000
 });
+
 
 new Vue({
   router,
