@@ -79,12 +79,12 @@
                         class="form-control"
                         :rules="[v => !!v || 'This is required']"
                     ></ckeditor> -->
-                    <textarea
-                        name="editor1"
-                        id="editor1"
-                        v-model="lesson.description" 
-                    ></textarea>
-                    {{lesson.description}}
+					<textarea
+						name="editor1"
+						id="editor1"
+						v-model="lesson.description"
+					></textarea>
+					{{ lesson.description }}
 				</v-col>
 			</v-row>
 
@@ -164,6 +164,8 @@
 </template>
 
 <script>
+/*global CKEDITOR*/
+/*eslint no-undef: "error"*/
 import { mapState, mapActions } from "vuex";
 import $ from "jquery";
 export default {
@@ -194,12 +196,11 @@ export default {
 		this.getListGrades();
 	},
 	watch: {
-        'lesson.description'(value){
-            // eslint-disable-next-line no-undef
-            CKEDITOR.instances['editor1'].setData(value);
-            console.log(value);
-        }
-    },
+		"lesson.description"(value) {
+			CKEDITOR.instances["editor1"].setData(value);
+			console.log(value);
+		},
+	},
 	filters: {},
 	methods: {
 		onReady(editor) {
@@ -242,7 +243,7 @@ export default {
 		},
 	},
 	mounted() {
-        var vm = this;
+		var vm = this;
 		$(document).ready(function($) {
 			$(function() {
 				$('[data-toggle="tooltip"]').tooltip();
@@ -253,13 +254,10 @@ export default {
 				ckeditor_js.async = true;
 				document.head.appendChild(ckeditor_js);
 				ckeditor_js.onload = () => {
-                    // eslint-disable-next-line no-undef
-                    CKEDITOR.replace( 'editor1' );
-                    // let editor = CKEDITOR.instances.editor1;
-                    // eslint-disable-next-line no-undef
-                    CKEDITOR.instances['editor1'].setData(vm.lesson.description);
-                    console.log(vm.lesson);
-                    // CKEDITOR.replace( 'editor1' );
+					CKEDITOR.replace("editor1");
+					CKEDITOR.instances["editor1"].setData(vm.lesson.description);
+					console.log(vm.lesson);
+					// CKEDITOR.replace( 'editor1' );
 				};
 			});
 		});
