@@ -68,20 +68,9 @@
 					</p>
 				</v-col>
 				<v-col v-show="edit == true">
-					<!-- <ckeditor id="create-lesson" 
-                        :editor="editor" 
-                        v-model="lesson.description" 
-                        :config="editorConfig" 
-                        :disabled="editorDisabled "
-                        @ready="onReady"
-                        required
-                        v-bind:placeholder="$t('lesson.description')"
-                        class="form-control"
-                        :rules="[v => !!v || 'This is required']"
-                    ></ckeditor> -->
 					<textarea
-						name="editor1"
-						id="editor1"
+						name="edit-lesson"
+						id="edit-lesson"
 						v-model="lesson.description"
 					></textarea>
 					{{ lesson.description }}
@@ -172,6 +161,7 @@ export default {
 	data() {
 		return {
 			edit: false,
+			count: 0,
 			editorDisabled: false,
 			editorConfig: {
 				placeholder: this.$t("lesson.description"),
@@ -197,8 +187,8 @@ export default {
 	},
 	watch: {
 		"lesson.description"(value) {
-			CKEDITOR.instances["editor1"].setData(value);
-			console.log(value);
+			if (this.count===0) CKEDITOR.instances["edit-lesson"].setData(value);
+			this.count++;
 		},
 	},
 	filters: {},
@@ -254,13 +244,20 @@ export default {
 				ckeditor_js.async = true;
 				document.head.appendChild(ckeditor_js);
 				ckeditor_js.onload = () => {
-					CKEDITOR.replace("editor1");
-					CKEDITOR.instances["editor1"].setData(vm.lesson.description);
-					console.log(vm.lesson);
-					// CKEDITOR.replace( 'editor1' );
+					CKEDITOR.replace("edit-lesson");
+					let editor = CKEDITOR.instances["edit-lesson"];
+					editor.on("change", () => {
+						vm.lesson.description = editor.getData();
+					});
 				};
 			});
 		});
+	},
+	destroyed() {
+		if (CKEDITOR.instances["edit-lesson"]) {
+			CKEDITOR.instances["edit-lesson"].destroy();
+			this.count=0;
+		}
 	},
 };
 </script>
