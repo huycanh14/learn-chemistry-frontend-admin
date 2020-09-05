@@ -9,9 +9,6 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^20.0.0",
-    "@ckeditor/ckeditor5-build-decoupled-document": "^20.0.0",
-    "@ckeditor/ckeditor5-vue": "^1.0.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/vue-fontawesome": "^0.1.5",
