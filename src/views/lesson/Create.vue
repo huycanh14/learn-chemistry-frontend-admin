@@ -20,7 +20,7 @@
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
                     <label>{{ $t('lesson.description') }} </label>
-                    <ckeditor id="create-lesson" 
+                    <!-- <ckeditor id="create-lesson" 
                         :editor="editor" 
                         v-model="lesson.description" 
                         :config="editorConfig" 
@@ -28,7 +28,7 @@
                         @ready="onReady"
                         v-bind:placeholder="$t('lesson.description')"
                         class="form-control"
-                    ></ckeditor>
+                    ></ckeditor> -->
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
 </template>
 <script>
 import { mapActions, mapState } from 'vuex'
-import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+// import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 // import $ from "jquery";
 export default {
     data() {
@@ -66,7 +66,7 @@ export default {
                 lesson_number: 1,
                 description: '',
             },
-            editor: DecoupledEditor,
+            // editor: DecoupledEditor,
             editorDisabled: false,
             editorConfig: {
                 placeholder: this.$t('lesson.description'),

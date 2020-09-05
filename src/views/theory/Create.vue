@@ -4,7 +4,7 @@
             <v-form>
                 <div class="form-group">
                     <label >{{ $t('theory.content')}}</label>
-                    <ckeditor id="create-lesson" 
+                    <!-- <ckeditor id="create-lesson" 
                         :editor="editor" 
                         v-model="theory.content" 
                         :config="editorConfig" 
@@ -12,7 +12,7 @@
                         @ready="onReady"
                         v-bind:placeholder="$t('theory.content')"
                         class="form-control"
-                    ></ckeditor>
+                    ></ckeditor> -->
                 </div>
                 <div class="form-group">
                     <label >{{ $t('theory.status')}}</label>
@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+// import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import { mapState, mapActions } from 'vuex'
 export default {
     data() {
         return {
-            editor: DecoupledEditor,
+            // editor: DecoupledEditor,
             editorDisabled: false,
             editorConfig: {
                 placeholder: this.$t('theory.content'),
