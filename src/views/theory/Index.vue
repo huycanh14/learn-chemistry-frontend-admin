@@ -1,19 +1,17 @@
 <template>
     <div>
         <v-icon x-large color="blue darken-2" 
-            :title="$t('theory.title_create')"
+           
             data-toggle="tooltip" 
             data-placement="right" 
             @click="show = true"
             v-if="show==false"
-        > mdi-database-plus</v-icon>
+        > mdi-database-plus</v-icon> 
+        <!-- :title="$t('theory.title_create')" -->
         <v-expand-x-transition>
             <create @message-form-create="notShowForm" v-if="show == true"></create>
         </v-expand-x-transition>
 
-        <div>
-            {{theories}}
-        </div>
     </div>
 </template>
 

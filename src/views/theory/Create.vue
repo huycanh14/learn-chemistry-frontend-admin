@@ -4,15 +4,10 @@
 			<v-form>
 				<div class="form-group">
 					<label>{{ $t("theory.content") }}</label>
-					<!-- <ckeditor id="create-lesson" 
-                        :editor="editor" 
-                        v-model="theory.content" 
-                        :config="editorConfig" 
-                        :disabled="editorDisabled "
-                        @ready="onReady"
-                        v-bind:placeholder="$t('theory.content')"
-                        class="form-control"
-                    ></ckeditor> -->
+					<textarea
+						name="create-theory"
+						id="create-theory"
+					></textarea>
 				</div>
 				<div class="form-group">
 					<label>{{ $t("theory.status") }}</label>
@@ -38,32 +33,13 @@
 </template>
 
 <script>
-// import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+/*global CKEDITOR*/
+/*eslint no-undef: "error"*/
+import $ from "jquery";
 import { mapState, mapActions } from "vuex";
 export default {
 	data() {
 		return {
-			// editor: DecoupledEditor,
-			editorDisabled: false,
-			editorConfig: {
-				placeholder: this.$t("theory.content"),
-				//             toolbar : [
-				// 	{ name: 'document', items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
-				// 	{ name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-				// 	{ name: 'editing', items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
-				// 	{ name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
-				// 	'/',
-				// 	{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
-				// 	{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
-				// 	{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-				// 	{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-				// 	'/',
-				// 	{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-				// 	{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-				// 	{ name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
-				// 	{ name: 'about', items: [ 'About' ] }
-				// ]
-			},
 			theory: {
 				content: "",
 				activated: false,
@@ -114,6 +90,33 @@ export default {
 		cancel() {
 			this.$emit("message-form-create");
 		},
+	},
+	mounted() {
+		var vm = this;
+		$(document).ready(function($) {
+			$(function() {
+				$('[data-toggle="tooltip"]').tooltip();
+				$("[title]").tooltip();
+
+				let ckeditor_js = document.createElement("script");
+				ckeditor_js.setAttribute("src", "/ckeditor/ckeditor.js");
+				ckeditor_js.async = true;
+				document.head.appendChild(ckeditor_js);
+				ckeditor_js.onload = () => {
+					CKEDITOR.replace("create-theory");
+					let editor = CKEDITOR.instances["create-theory"];
+					editor.on("change", () => {
+						vm.lesson.description = editor.getData();
+					});
+				};
+			});
+		});
+	},
+	destroyed() {
+		if (CKEDITOR.instances["create-theory"]) {
+			CKEDITOR.instances["create-theory"].destroy();
+			this.count=0;
+		}
 	},
 };
 </script>
