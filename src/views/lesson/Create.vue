@@ -20,15 +20,11 @@
             <div class="col-md-12 col-12 pr-1">
                 <div class="form-group">
                     <label>{{ $t('lesson.description') }} </label>
-                    <!-- <ckeditor id="create-lesson" 
-                        :editor="editor" 
-                        v-model="lesson.description" 
-                        :config="editorConfig" 
-                        :disabled="editorDisabled "
-                        @ready="onReady"
-                        v-bind:placeholder="$t('lesson.description')"
-                        class="form-control"
-                    ></ckeditor> -->
+                    
+                    <textarea
+						name="create-lesson"
+						id="create-lesson"
+					></textarea>
                 </div>
             </div>
         </div>
@@ -54,9 +50,10 @@
     </form>
 </template>
 <script>
+/*global CKEDITOR*/
+/*eslint no-undef: "error"*/
 import { mapActions, mapState } from 'vuex'
-// import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
-// import $ from "jquery";
+import $ from "jquery";
 export default {
     data() {
         return {
@@ -66,13 +63,6 @@ export default {
                 lesson_number: 1,
                 description: '',
             },
-            // editor: DecoupledEditor,
-            editorDisabled: false,
-            editorConfig: {
-                placeholder: this.$t('lesson.description'),
-                extraPlugins: 'fixed'
-                
-            }
         }
     },
     computed: {
@@ -112,17 +102,32 @@ export default {
             );
         }
     },
-    beforeCreate(){
-       
-    },
     mounted() {
-        // $(document).ready(function ($) {
-        //     con
-        //     $('#create-lesson').click(function() { 
-        //         console.log('click ckeditor')
-        //     });
-        // })
-    },
+		var vm = this;
+		$(document).ready(function($) {
+			$(function() {
+				$('[data-toggle="tooltip"]').tooltip();
+				$("[title]").tooltip();
+
+				let ckeditor_js = document.createElement("script");
+				ckeditor_js.setAttribute("src", "/ckeditor/ckeditor.js");
+				ckeditor_js.async = true;
+				document.head.appendChild(ckeditor_js);
+				ckeditor_js.onload = () => {
+					CKEDITOR.replace("create-lesson");
+					let editor = CKEDITOR.instances["create-lesson"];
+					editor.on("change", () => {
+						vm.lesson.description = editor.getData();
+					});
+				};
+			});
+		});
+	},
+	destroyed() {
+		if (CKEDITOR.instances["create-lesson"]) {
+			CKEDITOR.instances["create-lesson"].destroy();
+		}
+	},
     
     
 }

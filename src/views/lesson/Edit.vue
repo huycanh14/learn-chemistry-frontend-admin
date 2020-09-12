@@ -73,7 +73,6 @@
 						id="edit-lesson"
 						v-model="lesson.description"
 					></textarea>
-					{{ lesson.description }}
 				</v-col>
 			</v-row>
 
