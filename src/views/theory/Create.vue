@@ -4,10 +4,7 @@
 			<v-form>
 				<div class="form-group">
 					<label>{{ $t("theory.content") }}</label>
-					<textarea
-						name="create-theory"
-						id="create-theory"
-					></textarea>
+					<textarea name="create-theory" id="create-theory"></textarea>
 				</div>
 				<div class="form-group">
 					<label>{{ $t("theory.status") }}</label>
@@ -20,7 +17,7 @@
 				</div>
 
 				<div class="text-center">
-					<v-btn class="mx-2" dark large color="cyan" @click="createTheory">
+					<v-btn class="mx-2" dark large color="cyan" @click="addTheory">
 						{{ $t("btn.create") }}
 					</v-btn>
 					<v-btn class="mx-2" dark large color="warning" @click="cancel">
@@ -57,7 +54,6 @@ export default {
 			createTheory: "theories/createTheory",
 		}),
 		onReady(editor) {
-			console.log(Array.from(editor.ui.componentFactory.names()), 1);
 			Array.from(editor.ui.componentFactory.names());
 			editor.ui
 				.getEditableElement()
@@ -66,7 +62,7 @@ export default {
 					editor.ui.getEditableElement(),
 				);
 		},
-		createTheory() {
+		addTheory() {
 			if (this.theory.content === "") {
 				this.$toast.warning(this.$t("messages.required"));
 				return false;
@@ -106,7 +102,7 @@ export default {
 					CKEDITOR.replace("create-theory");
 					let editor = CKEDITOR.instances["create-theory"];
 					editor.on("change", () => {
-						vm.lesson.description = editor.getData();
+						vm.theory.content = editor.getData();
 					});
 				};
 			});
@@ -115,7 +111,7 @@ export default {
 	destroyed() {
 		if (CKEDITOR.instances["create-theory"]) {
 			CKEDITOR.instances["create-theory"].destroy();
-			this.count=0;
+			this.count = 0;
 		}
 	},
 };
