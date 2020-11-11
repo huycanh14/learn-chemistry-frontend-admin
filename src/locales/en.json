@@ -46,7 +46,7 @@
     "delete_error": "Delete is failed",
     "required": "No full information"
   },
-  "clicks" :{
+  "clicks": {
     "update": "Click to update",
     "remove": "Click to cancel update",
     "delete": "Click to delete",
@@ -92,7 +92,8 @@
     "create": "Submit to create",
     "update": "Submit to update",
     "details": "To details",
-    "cancel": "To cancel"
+    "cancel": "To cancel",
+    "delete": "To delete"
   },
   "lesson": {
     "title_create": "Create lesson",

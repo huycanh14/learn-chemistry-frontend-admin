@@ -25,7 +25,7 @@ var actions = {
 		return TheoryService.getTheoriesByLessonId(lesson_id)
 			.then((response) => {
 				if (response.status == 200)
-					commit("getTheoriesByLessonId", response.data);
+					commit("getTheoriesByLessonId", response.data.data);
 				return response;
 			})
 			.catch((err) => err.message);

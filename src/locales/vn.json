@@ -46,7 +46,7 @@
     "delete_error": "Xóa thông tin thất bại",
     "required": "Chưa điền thông tin đầy đủ"
   },
-  "clicks" :{
+  "clicks": {
     "update": "Click để cập nhật",
     "cancel": "Click để hủy cập nhật",
     "delete": "Click để xóa",
@@ -92,7 +92,8 @@
     "create": "Tạo mới",
     "update": "Sửa đổi",
     "details": "Chi tiết",
-    "cancel": "Hủy bỏ"
+    "cancel": "Hủy bỏ",
+    "delete": "Xóa bỏ"
   },
   "lesson": {
     "title_create": "Tạo bài học mới",
